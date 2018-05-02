@@ -218,7 +218,7 @@ namespace DAL
             {
                 CustomerId = payment.CustomerId,
                 PaymentId = payment.PaymentId,
-                Date = payment.Date,
+                Date = payment.PayDate,
                 TotalPayment = payment.TotalPayment,
                 Customer = payment.Customer.ToDto()
             };
@@ -231,7 +231,7 @@ namespace DAL
             {
                 CustomerId = paymentDto.CustomerId,
                 PaymentId = paymentDto.PaymentId,
-                Date = paymentDto.Date,
+                PayDate = paymentDto.Date,
                 TotalPayment = paymentDto.TotalPayment,
                 Customer = paymentDto.Customer.ToModel()
             };

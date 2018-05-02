@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CellularCompanyContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelExtantions.cs" />
     <Compile Include="Models\Call.cs" />
     <Compile Include="Models\Customer.cs" />

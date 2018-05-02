@@ -14,6 +14,8 @@ namespace Common.Dtoes
         public double Duration { get; set; }
         public double ExternalPrice { get; set; }
         public string DestinationNumber { get; set; }
+        public DateTime callSendDate { get; set; }
+
         public int LineId { get; set; }
         public LineDto Line { get; set; }
     }

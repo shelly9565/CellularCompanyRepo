@@ -9,6 +9,11 @@ namespace DAL.Models
 {
     public class CustomerType
     {
+        public CustomerType()
+        {
+            Customers = new HashSet<Customer>();
+        }
+
         [Key]
         public int CustomerTypeId { get; set; }
         public string TypeName { get; set; }

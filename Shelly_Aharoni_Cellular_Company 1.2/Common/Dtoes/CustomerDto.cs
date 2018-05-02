@@ -23,9 +23,9 @@ namespace Common.Dtoes
         [DataMember]
         public string ContactNumber { get; set; }
         [DataMember]
-        public int CallsToCenter { get; set; }
+        public int? CallsToCenter { get; set; }
         [DataMember]
-        public int? CustomerTypeId { get; set; }
+        public int CustomerTypeId { get; set; }
         [DataMember]
         public CustomerTypeDto CustomerType { get; set; }
 
