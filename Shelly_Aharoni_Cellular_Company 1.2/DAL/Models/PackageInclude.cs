@@ -13,17 +13,17 @@ namespace DAL.Models
         [Key]
         public int PackageIncludeId { get; set; }
         public string IncludeName { get; set; }
-        public int MaxMinute { get; set; }
-        public double FixedPrice { get; set; }
-        public double DiscountPrecentage { get; set; }
-        public bool MostCalledNumber { get; set; }
+        public int? MaxMinute { get; set; }
+        public double? FixedPrice { get; set; }
+        public double? DiscountPrecentage { get; set; }
+        public string MostCalledNumber { get; set; }
         public bool InsideFamilyCalls { get; set; }
 
-        [ForeignKey("SelectedNumber")]
-        public int FavoriteNumbersId { get; set; }
+        [ForeignKey(nameof(SelectedNumber))]
+        public int? FavoriteNumbersId { get; set; }
         public SelectedNumber SelectedNumber { get; set; }
 
-        [ForeignKey("Package")]
+        [ForeignKey(nameof(Package))]
         public int PackageId { get; set; }
         public Package Package { get; set; }
     }

@@ -10,16 +10,22 @@ namespace DAL.Models
 {
     public class Line
     {
+        public Line()
+        {
+            SMSes = new HashSet<SMS>();
+            Calls = new HashSet<Call>();
+        }
+
         [Key]
         public int LineId { get; set; }
         public string Number { get; set; }
-        public string Status { get; set; }
+        public Status Status { get; set; }
 
-        [ForeignKey("Package")]
+        [ForeignKey(nameof(Package))]
         public int PackageId { get; set; }
         public Package Package { get; set; }
 
-        [ForeignKey("Customer")]
+        [ForeignKey(nameof(Customer))]
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 

@@ -9,6 +9,12 @@ namespace DAL.Models
 {
     public class Package
     {
+        public Package()
+        {
+            Lines = new HashSet<Line>();
+            PackageIncludes = new HashSet<PackageInclude>();
+        }
+
         [Key]
         public int PackageId { get; set; }
         public string PackageName { get; set; }

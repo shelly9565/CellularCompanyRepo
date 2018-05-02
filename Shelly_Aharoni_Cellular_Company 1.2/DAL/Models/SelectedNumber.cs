@@ -9,6 +9,10 @@ namespace DAL.Models
 {
     public class SelectedNumber
     {
+        public SelectedNumber()
+        {
+            PackageIncludes = new HashSet<PackageInclude>();
+        }
         [Key]
         public int SelectedNumberId { get; set; }
         public string FirstNumber { get; set; }

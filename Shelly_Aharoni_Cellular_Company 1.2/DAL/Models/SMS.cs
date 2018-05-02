@@ -14,8 +14,9 @@ namespace DAL.Models
         public int SMSId { get; set; }
         public double ExternalPrice { get; set; }
         public string DestinationNumber { get; set; }
+        public DateTime SmsSendTime { get; set; }
 
-        [ForeignKey("Line")]
+        [ForeignKey(nameof(Line))]
         public int LineId { get; set; }
         public Line Line { get; set; }
     }

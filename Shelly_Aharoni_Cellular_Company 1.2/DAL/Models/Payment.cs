@@ -12,10 +12,10 @@ namespace DAL.Models
     {
         [Key]
         public int PaymentId { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime PayDate { get; set; }
         public double TotalPayment { get; set; }
 
-        [ForeignKey("Customer")]
+        [ForeignKey(nameof(Customer))]
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
     }
