@@ -29,7 +29,7 @@ namespace BL.Registrations
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterModule<CRMProviderRegistration>();
+            //builder.RegisterModule<CRMProviderRegistration>();
             builder.RegisterModule<CallProviderRegistration>();
             builder.RegisterModule<SmsProviderRegistration>();
             builder.RegisterModule<PaymentProviderRegistration>();
@@ -44,7 +44,7 @@ namespace BL.Registrations
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterModule<CRMProviderRegistration>();
+            //builder.RegisterModule<CRMProviderRegistration>();
             builder.RegisterModule<CallProviderRegistration>();
             builder.RegisterModule<SmsProviderRegistration>();
             builder.RegisterModule<LineProviderRegistration>();

@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using BL;
+using BL.Providers.Info;
 using Common.Dtoes;
 
 namespace Host
@@ -16,7 +17,7 @@ namespace Host
 
         public async Task<IEnumerable<CustomerDto>> GetCustomers()
         {
-            return await customerProvider.GetCustomers();
+            return await customerProvider.GetAllCustomers();
         }
     }
 }

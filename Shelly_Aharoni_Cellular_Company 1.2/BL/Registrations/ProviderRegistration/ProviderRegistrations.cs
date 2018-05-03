@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using BL.Providers.Repo;
+using BL.Providers.Info;
 using Common.Infra.Providers.Repo;
 using System;
 using System.Collections.Generic;
@@ -88,7 +88,7 @@ namespace BL.Registrations.ProviderRegistration
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Providers.Repo.SelectedNumberProvider>()
+            builder.RegisterType<Providers.Info.SelectedNumberProvider>()
                 .As<ISelectedNumberProvider>()
                 .SingleInstance();
             base.Load(builder);

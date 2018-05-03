@@ -32,7 +32,7 @@ namespace Client.ViewModel
             c.Address = customer.Address;
             c.CallsToCenter = customer.CallsToCenter;
             c.ContactNumber = customer.ContactNumber;
-            c.CustomerTypeId = customer.CustomerTypeId;
+            //c.CustomerTypeId = customer.CustomerTypeId;
             c.FirstName = customer.FirstName;
             c.LastName = customer.LastName;
             //c.CustomerType = customer.CustomerType.ToDto();
