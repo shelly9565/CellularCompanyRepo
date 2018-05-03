@@ -29,7 +29,7 @@ namespace DAL.Repositories
                 }
             }
         }
-               
+
         public async Task<CustomerDto> GetCustomer(int id)
         {
             using (CellularCompanyContext db = new CellularCompanyContext())
@@ -37,17 +37,17 @@ namespace DAL.Repositories
                 try
                 {
                     Customer customer = await db.Customers.FindAsync(id);
-                    return customer.ToDto(); 
+                    return customer.ToDto();
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
                     return null;
                 }
-          
+
             }
         }
-               
+
         public async Task<CustomerDto> CreateCustomer(CustomerDto customerDto)
         {
             using (CellularCompanyContext db = new CellularCompanyContext())
@@ -96,10 +96,10 @@ namespace DAL.Repositories
                     Debug.WriteLine(ex.Message);
                     return null;
                 }
-          
+
             }
         }
-               
+
         public async Task<CustomerDto> DeleteCustomer(int id)
         {
             using (CellularCompanyContext db = new CellularCompanyContext())
@@ -120,8 +120,65 @@ namespace DAL.Repositories
                     Debug.WriteLine(ex.Message);
                     return null;
                 }
-               
+
             }
         }
+
+        //public async Task<CustomerDto> UpdateCustomerType(int customerId, int typeId)
+        //{
+        //    using (CellularCompanyContext db = new CellularCompanyContext())
+        //    {
+        //        try
+        //        {
+        //            Customer customer = db.Customers.FirstOrDefault(c => c.CustomerId == customerId);
+        //            if (customer == null) return null;
+        //            else
+        //            {
+        //                customer.CustomerId = typeId;
+        //                db.Entry(customer).Property(nameof(customer)).IsModified = true;
+        //                await db.SaveChangesAsync();
+        //                return customer.ToDto();
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Debug.WriteLine(ex.Message);
+        //            return null;
+        //        }
+        //    }
+
+        //}
+
+        //public async Task<IEnumerable<int>> GetCustomerIds()  ////????????????
+        //{
+        //    IEnumerable<CustomerDto> customers = await GetCustomers();
+        //    if (customers == null) return null;
+        //    else
+        //    {
+        //        return customers.Select(c => c.CustomerId).ToList();
+        //    }
+        //}
+
+        //public IEnumerable<LineDto> GetCustomerLines(int customerId)
+        //{
+        //    using (CellularCompanyContext db = new CellularCompanyContext())
+        //    {
+        //        try
+        //        {
+        //            Customer customer = db.Customers.FirstOrDefault(c => c.CustomerId == customerId);
+        //            if (customer == null) return null;
+        //            else
+        //            {
+        //                return customer.Lines.Select(line => line.ToDto()).ToList();
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Debug.WriteLine(ex.Message);
+        //            return null;
+        //        }
+        //    }
+        //}
+
     }
 }

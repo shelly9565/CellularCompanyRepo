@@ -27,7 +27,7 @@ namespace DAL.Repositories
                     Debug.WriteLine(ex.Message);
                     return null;
                 }
-           
+
             }
         }
 
@@ -45,7 +45,7 @@ namespace DAL.Repositories
                     Debug.WriteLine(ex.Message);
                     return null;
                 }
-               
+
             }
         }
 
@@ -68,7 +68,7 @@ namespace DAL.Repositories
                     Debug.WriteLine(ex.Message);
                     return null;
                 }
-              
+
             }
         }
 
@@ -97,7 +97,7 @@ namespace DAL.Repositories
                     Debug.WriteLine(ex.Message);
                     return null;
                 }
-               
+
             }
         }
 
@@ -121,9 +121,34 @@ namespace DAL.Repositories
                     Debug.WriteLine(ex.Message);
                     return null;
                 }
-               
+
             }
         }
-        
+
+        //public async Task<LineDto> AddLineEntity(LineDto line, PackageIncludeDto packageInclude)
+        //{
+        //    using (CellularCompanyContext db = new CellularCompanyContext())
+        //    {
+        //        try
+        //        {
+        //            if (line == null) return null;
+        //            else
+        //            {
+        //                Line lineEntity = line.ToModel();
+        //                db.Lines.Add(lineEntity);
+        //                PackageInclude packageIncludesEntity = packageInclude.ToModel();
+        //                lineEntity.Package.PackageIncludes.Add(packageIncludesEntity);
+        //                await db.SaveChangesAsync();
+        //                return lineEntity.ToDto();
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Debug.WriteLine(ex.Message);
+        //            return null;
+        //        }
+        //    }
+        //}
+
     }
 }
