@@ -14,7 +14,7 @@ namespace Common.Dtoes
         public double MinutePrice { get; set; }
         public double SMSPrice { get; set; }
 
-        public virtual ICollection<CustomerDto> Customers { get; set; }
+        public virtual IEnumerable<CustomerDto> Customers { get; set; }
 
     }
 }

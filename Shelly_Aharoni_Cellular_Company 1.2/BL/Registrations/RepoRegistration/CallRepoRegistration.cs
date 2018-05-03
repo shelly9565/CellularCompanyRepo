@@ -17,9 +17,6 @@ namespace BL.Registrations.Repo
                    .As<ICallRepository>()
                    .SingleInstance();
 
-
-
-
             base.Load(builder);
         }
     }

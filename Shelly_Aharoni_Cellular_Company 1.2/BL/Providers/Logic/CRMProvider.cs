@@ -1,5 +1,7 @@
 ﻿using Autofac;
+using BL.Registrations;
 using Common.Dtoes;
+using Common.Infra.Providers.Repo;
 using Common.Repos.Infra;
 using System;
 using System.Collections.Generic;
@@ -29,68 +31,104 @@ namespace BL.Providers.Logic
             Task<CustomerDto> customerDto;
             lock (_obj)
             {
-                ICustomerRepository customerRepository = GetContainer().Resolve<ICustomerRepository>();
-                customerDto = customerRepository.CreateCustomer(customer);
+                //ICustomerRepository customerRepository = GetContainer().Resolve<ICustomerRepository>();
+                //customerDto = customerRepository.CreateCustomer(customer);
+                ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
+                customerDto = customerProvider.AddCustomer(customer);
             }
             return await customerDto;
         }
 
         public async Task<CustomerDto> RemoveCustomer(int id)
         {
-            Task<CustomerDto> isDeleted;
+            Task<CustomerDto> customerToDel;
             lock (_obj)
             {
-                ICustomerRepository customerRepository = GetContainer().Resolve<ICustomerRepository>();
-                isDeleted = customerRepository.DeleteCustomer(id);
+                //ICustomerRepository customerRepository = GetContainer().Resolve<ICustomerRepository>();
+                //customerToDel = customerRepository.DeleteCustomer(id);
+                ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
+                customerToDel = customerProvider.RemoveCustomer(id);
             }
-            return await isDeleted;
+            return await customerToDel;
         }
 
         public async Task<CustomerDto> UpdateCustomer(CustomerDto customer)
         {
-            Task<CustomerDto> customerDto;
+            Task<CustomerDto> customerToUpdate;
             lock (_obj)
             {
-                ICustomerRepository clientRepository = GetContainer().Resolve<ICustomerRepository>();
-                customerDto = clientRepository.UpdateCustomer(customer.CustomerId, customer);
+                //ICustomerRepository clientRepository = GetContainer().Resolve<ICustomerRepository>();
+                //customerToUpdate = clientRepository.UpdateCustomer(customer.CustomerId, customer);
+                ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
+                customerToUpdate = customerProvider.UpdateCustomer(customer.CustomerId, customer);
             }
-            return await customerDto;
+            return await customerToUpdate;
         }
 
+        //???????????????????????????????????????????????????????????????????????
         public async Task<PackageDto> UpdatePackage(string clientId, int lineId, PackageDto package)
         {
-            Task<PackageDto> packageDto;
+            Task<PackageDto> packageToUpdate;
             lock (_obj)
             {
-                IPackageRepository packageRepository = GetContainer().Resolve<IPackageRepository>();
-                packageDto = packageRepository.UpdatePackage(package, lineId, clientId);
+                //IPackageRepository packageRepository = GetContainer().Resolve<IPackageRepository>();
+                //packageToUpdate = packageRepository.UpdatePackage(package, lineId, clientId);
+                IPackageProvider packageProvider = GetContainer().Resolve<IPackageProvider>();
+                packageToUpdate = packageProvider.UpdatePackage(package.PackageId, package);
             }
-            return await packageDto;
+            return await packageToUpdate;
         }
 
-        public async Task<CustomerDto> UpdateCustomerType(int typeId, CustomerDto client)
+        public async Task<IEnumerable<CustomerDto>> GetAllCustomers()
         {
-            Task<CustomerDto> customerDto;
+            Task<IEnumerable<CustomerDto>> customers;
             lock (_obj)
             {
-                ICustomerRepository clientRepository = GetContainer().Resolve<ICustomerRepository>();
-                customerDto = clientRepository.UpdateClientClientType(client, typeId);
+                ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
+                customers = customerProvider.GetAllCustomers();
             }
-            return await customerDto;
+            return await customers;
         }
 
-        public IEnumerable<CustomerTypeDto> GetCustomerTypes()
+        public async Task<CustomerDto> GetCustomer(int id)
+        {
+            Task<CustomerDto> customer;
+            lock (_obj)
+            {
+                ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
+                customer = customerProvider.GetCustomer(id);
+            }
+            return await customer;
+        }
+
+
+        public async Task<CustomerTypeDto> UpdateCustomerType(int typeId, CustomerDto customer)
+        {
+            Task<CustomerTypeDto> custmrTypeToUpdate;
+            lock (_obj)
+            {
+                //ICustomerRepository clientRepository = GetContainer().Resolve<ICustomerRepository>();
+                //customerDto = clientRepository.UpdateClientClientType(client, typeId);
+                ICustomerTypeProvider customerTypeProvider = GetContainer().Resolve<ICustomerTypeProvider>();
+                custmrTypeToUpdate = customerTypeProvider.UpdateCustomerType(customer.CustomerTypeId, customer.CustomerType);
+
+            }
+            return await custmrTypeToUpdate;
+        }
+
+        public async Task<IEnumerable<CustomerTypeDto>> GetCustomerTypes()
         {
             try
             {
-                List<CustomerTypeDto> clientTypeDto;
+                IEnumerable<CustomerTypeDto> customerTypes;
                 lock (_obj)
                 {
-                    ICustomerTypeRepository clientTypeRepository = GetContainer().Resolve<ICustomerTypeRepository>();
-                    clientTypeDto = clientTypeRepository.AddOrUpdateClientType().Result;
-                    var a = clientTypeDto;
+                    //ICustomerTypeRepository clientTypeRepository = GetContainer().Resolve<ICustomerTypeRepository>();
+                    //clientTypeDto = clientTypeRepository.AddOrUpdateClientType().Result;
+                    ICustomerTypeProvider customerTypeProvider = GetContainer().Resolve<ICustomerTypeProvider>();
+                    customerTypes = customerTypeProvider.GetAllCustomerTypes().Result;
                 }
-                return clientTypeDto;
+                return customerTypes;
             }
             catch (Exception ex)
             {

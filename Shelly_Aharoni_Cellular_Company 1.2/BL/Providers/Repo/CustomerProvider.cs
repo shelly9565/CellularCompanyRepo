@@ -1,4 +1,5 @@
-﻿using Common.Dtoes;
+﻿using Autofac;
+using Common.Dtoes;
 using Common.Repos.Infra;
 using DAL;
 using DAL.Models;
@@ -12,89 +13,65 @@ using System.Threading.Tasks;
 
 namespace BL.Providers.Repo
 {
-    public class CustomerProvider
+    public class CustomerProvider : ICustomerProvider
     {
-        private ICustomerRepository _customerRepository = new CustomerRepository();
-
-        //public CustomerProvider(CustomerRepository repository)
-        //{
-        //    _customerRepository = repository;
-        //}
-
-        public async Task<CustomerDto> GetCustomer(int id)
+        private static IContainer GetContainer()
         {
-            try
-            {
-                CustomerDto customerDto = await _customerRepository.GetCustomer(id);
-                return customerDto;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-                Debug.WriteLine(ex.InnerException);
-                return null;
-            }
+            var builder = new ContainerBuilder();
+            builder.RegisterType<CustomerRepository>()
+                    .As<ICustomerRepository>()
+                    .SingleInstance();
+            return builder.Build();
+        }
+
+        public async Task<CustomerDto> AddCustomer(CustomerDto customerDto)
+        {
+            return await GetContainer().Resolve<ICustomerRepository>().CreateCustomer(customerDto);
+        }
+
+        public async Task<CustomerDto> RemoveCustomer(int customerId)
+        {
+            return await GetContainer().Resolve<ICustomerRepository>().DeleteCustomer(customerId);
+        }
+
+        public async Task<CustomerDto> UpdateCustomer(CustomerDto customerDto, int customerId)
+        {
+            return await GetContainer().Resolve<ICustomerRepository>().UpdateCustomer(customerId, customerDto);
+        }
+
+        public async Task<CustomerDto> GetCustomer(int customerId)
+        {
+            return await GetContainer().Resolve<ICustomerRepository>().GetCustomer(customerId);
         }
 
         public async Task<IEnumerable<CustomerDto>> GetCustomers()
         {
             try
             {
-                IEnumerable<CustomerDto> customers = await _customerRepository.GetCustomers();
-                return customers.Select(custmer => custmer);
+                return await GetContainer().Resolve<ICustomerRepository>().GetCustomers();
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                Debug.WriteLine(ex.InnerException);
                 return null;
             }
         }
 
-        public async Task<CustomerDto> PostCustomer(CustomerDto customer)
-        {
-            try
-            {
-                CustomerDto cstmrDto = await _customerRepository.CreateCustomer(customer);
-                return cstmrDto;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-                Debug.WriteLine(ex.InnerException);
-                return null;
-            }
-        }
+        //public async Task<CustomerDto> UpdateClientCustomerType(CustomerDto dto, int type)
+        //{
+        //    CustomerDto customerdto = await GetContainer().Resolve<ICustomerRepository>().GetCustomer(dto.CustomerId);
+        //}
 
-        public async Task<CustomerDto> DeleteCustomer(int id)
-        {
-            try
-            {
-                CustomerDto cstmrDto = await _customerRepository.DeleteCustomer(id);
-                return cstmrDto;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-                Debug.WriteLine(ex.InnerException);
-                return null;
-            }
-        }
+        //public async Task<IEnumerable<int>> GetCustomersIds()
+        //{
+        //    return GetContainer().Resolve<ICustomerRepository>().GetClientIds();
+        //}
 
-        public async Task<CustomerDto> PutCustomer(int id, CustomerDto customer)
-        {
-            try
-            {
-                CustomerDto customerDto = await _customerRepository.UpdateCustomer(id, customer);
-                return customerDto;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-                Debug.WriteLine(ex.InnerException);
-                return null;
-            }
-        }
+        //public async Task<IEnumerable<LineDto>> GetLines(string clientId)
+        //{
+        //    return GetContainer().Resolve<ICustomerRepository>().GetClientLines(clientId);
+        //}
+
 
     }
 

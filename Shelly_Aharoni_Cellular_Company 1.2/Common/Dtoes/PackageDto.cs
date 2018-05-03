@@ -13,8 +13,8 @@ namespace Common.Dtoes
         public string PackageName { get; set; }
         public double PackageTotalPrice { get; set; }
 
-        public virtual ICollection<LineDto> Lines { get; set; }
-        public virtual ICollection<PackageIncludeDto> PackageIncludes { get; set; }
+        public virtual IEnumerable<LineDto> Lines { get; set; }
+        public virtual IEnumerable<PackageIncludeDto> PackageIncludes { get; set; }
 
     }
 }
