@@ -17,7 +17,7 @@ namespace DAL.Repositories
         {
             using (CellularCompanyContext db = new CellularCompanyContext())
             {
-                try
+                try 
                 {
                     IEnumerable<Package> packages = await db.Packages.ToListAsync();
                     return packages.Select(p => p.ToDto()).ToList();
