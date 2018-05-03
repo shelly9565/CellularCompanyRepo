@@ -31,8 +31,6 @@ namespace BL.Providers.Logic
             Task<CustomerDto> customerDto;
             lock (_obj)
             {
-                //ICustomerRepository customerRepository = GetContainer().Resolve<ICustomerRepository>();
-                //customerDto = customerRepository.CreateCustomer(customer);
                 ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
                 customerDto = customerProvider.AddCustomer(customer);
             }
@@ -71,8 +69,6 @@ namespace BL.Providers.Logic
             Task<PackageDto> packageToUpdate;
             lock (_obj)
             {
-                //IPackageRepository packageRepository = GetContainer().Resolve<IPackageRepository>();
-                //packageToUpdate = packageRepository.UpdatePackage(package, lineId, clientId);
                 IPackageProvider packageProvider = GetContainer().Resolve<IPackageProvider>();
                 packageToUpdate = packageProvider.UpdatePackage(package.PackageId, package);
             }

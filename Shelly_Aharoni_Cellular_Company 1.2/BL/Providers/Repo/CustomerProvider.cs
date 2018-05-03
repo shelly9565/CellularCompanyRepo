@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Common.Dtoes;
+using Common.Infra.Providers.Repo;
 using Common.Repos.Infra;
 using DAL;
 using DAL.Models;
@@ -44,7 +45,7 @@ namespace BL.Providers.Repo
             return await GetContainer().Resolve<ICustomerRepository>().GetCustomer(customerId);
         }
 
-        public async Task<IEnumerable<CustomerDto>> GetCustomers()
+        public async Task<IEnumerable<CustomerDto>> GetAllCustomers()
         {
             try
             {
@@ -55,6 +56,11 @@ namespace BL.Providers.Repo
                 Debug.WriteLine(ex.Message);
                 return null;
             }
+        }
+
+        public Task<CustomerDto> UpdateCustomer(int id, CustomerDto customerDto)
+        {
+            throw new NotImplementedException();
         }
 
         //public async Task<CustomerDto> UpdateClientCustomerType(CustomerDto dto, int type)

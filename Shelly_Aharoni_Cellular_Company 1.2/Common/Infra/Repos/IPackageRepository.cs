@@ -9,7 +9,7 @@ namespace Common.Repos.Infra
 {
     public interface IPackageRepository
     {
-        Task<IEnumerable<PackageDto>> GetEntities();
+        Task<IEnumerable<PackageDto>> GetPackages();
         Task<PackageDto> GetPackage(int id);
         Task<PackageDto> CreatePackage(PackageDto packageDto);
         Task<PackageDto> UpdatePackage(int id, PackageDto packageDto);

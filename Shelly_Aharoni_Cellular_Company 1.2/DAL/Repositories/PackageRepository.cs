@@ -13,7 +13,7 @@ namespace DAL.Repositories
 {
     public class PackageRepository : IPackageRepository
     {
-        public async Task<IEnumerable<PackageDto>> GetEntities()
+        public async Task<IEnumerable<PackageDto>> GetPackages()
         {
             using (CellularCompanyContext db = new CellularCompanyContext())
             {
