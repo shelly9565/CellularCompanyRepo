@@ -57,20 +57,20 @@ namespace BL.Providers.Repo
             }
         }
 
-        public async Task<CustomerDto> UpdateClientCustomerType(CustomerDto dto, int type)
-        {
-            CustomerDto customerdto = await GetContainer().Resolve<ICustomerRepository>().GetCustomer(dto.CustomerId);
-        }
+        //public async Task<CustomerDto> UpdateClientCustomerType(CustomerDto dto, int type)
+        //{
+        //    CustomerDto customerdto = await GetContainer().Resolve<ICustomerRepository>().GetCustomer(dto.CustomerId);
+        //}
 
-        public async Task<IEnumerable<int>> GetCustomersIds()
-        {
-            return GetContainer().Resolve<ICustomerRepository>().GetClientIds();
-        }
+        //public async Task<IEnumerable<int>> GetCustomersIds()
+        //{
+        //    return GetContainer().Resolve<ICustomerRepository>().GetClientIds();
+        //}
 
-        public async Task<IEnumerable<LineDto>> GetLines(string clientId)
-        {
-            return GetContainer().Resolve<ICustomerRepository>().GetClientLines(clientId);
-        }
+        //public async Task<IEnumerable<LineDto>> GetLines(string clientId)
+        //{
+        //    return GetContainer().Resolve<ICustomerRepository>().GetClientLines(clientId);
+        //}
 
 
     }

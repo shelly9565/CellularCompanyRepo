@@ -59,6 +59,7 @@
     <Compile Include="Providers\Repo\SmsProvider.cs" />
     <Compile Include="Registrations\ModulesRegistrations.cs" />
     <Compile Include="Registrations\ProviderRegistration\Logic\CRMRegisration.cs" />
+    <Compile Include="Registrations\ProviderRegistration\ProviderRegistrations.cs" />
     <Compile Include="Registrations\RepoRegistration\CallRepoRegistration.cs" />
     <Compile Include="Registrations\RepoRegistration\CustomerRepoRegistration.cs" />
     <Compile Include="Registrations\RepoRegistration\CustomerTypeRepoRegistration.cs" />
@@ -79,9 +80,7 @@
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Registrations\ProviderRegistration\Main\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using BL.Registrations.ProviderRegistration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,12 @@ namespace BL.Registrations
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterModule<ClientManagerRegistration>();
-            builder.RegisterModule<LineManagerRegistration>();
-            builder.RegisterModule<PackageManagerRegistration>();
-            builder.RegisterModule<ClientTypeManagerRegistration>();
-            builder.RegisterModule<PackageIncludesManagerRegistration>();
-            builder.RegisterModule<SelectedNumbersManagerRegistration>();
+            builder.RegisterModule<ClientProviderRegistration>();
+            builder.RegisterModule<LineProviderRegistration>();
+            builder.RegisterModule<PackageProviderRegistration>();
+            builder.RegisterModule<ClientTypeProviderRegistration>();
+            builder.RegisterModule<PackageIncludesProviderRegistration>();
+            builder.RegisterModule<SelectedNumbersProviderRegistration>();
 
             IContainer container = builder.Build();
             return container;
@@ -28,12 +29,12 @@ namespace BL.Registrations
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterModule<CRMManagerRegistration>();
-            builder.RegisterModule<CallManagerRegistration>();
-            builder.RegisterModule<SMSManagerRegistration>();
-            builder.RegisterModule<PaymentManagerRegistration>();
-            builder.RegisterModule<PackageIncludesManagerRegistration>();
-            builder.RegisterModule<PackageManagerRegistration>();
+            builder.RegisterModule<CRMProviderRegistration>();
+            builder.RegisterModule<CallProviderRegistration>();
+            builder.RegisterModule<SmsProviderRegistration>();
+            builder.RegisterModule<PaymentProviderRegistration>();
+            builder.RegisterModule<PackageIncludesProviderRegistration>();
+            builder.RegisterModule<PackageProviderRegistration>();
 
             IContainer container = builder.Build();
             return container;
@@ -43,14 +44,14 @@ namespace BL.Registrations
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterModule<CRMManagerRegistration>();
-            builder.RegisterModule<CallManagerRegistration>();
-            builder.RegisterModule<SMSManagerRegistration>();
-            builder.RegisterModule<LineManagerRegistration>();
-            builder.RegisterModule<PackageIncludesManagerRegistration>();
-            builder.RegisterModule<PackageManagerRegistration>();
-            builder.RegisterModule<PaymentManagerRegistration>();
-            builder.RegisterModule<ClientTypeManagerRegistration>();
+            builder.RegisterModule<CRMProviderRegistration>();
+            builder.RegisterModule<CallProviderRegistration>();
+            builder.RegisterModule<SmsProviderRegistration>();
+            builder.RegisterModule<LineProviderRegistration>();
+            builder.RegisterModule<PackageIncludesProviderRegistration>();
+            builder.RegisterModule<PackageProviderRegistration>();
+            builder.RegisterModule<PaymentProviderRegistration>();
+            builder.RegisterModule<ClientTypeProviderRegistration>();
 
             IContainer container = builder.Build();
             return container;

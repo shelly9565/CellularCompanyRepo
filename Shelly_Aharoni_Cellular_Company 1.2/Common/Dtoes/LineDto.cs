@@ -26,8 +26,8 @@ namespace Common.Dtoes
         public int CustomerId { get; set; }
         public CustomerDto Customer { get; set; }
 
-        public virtual ICollection<SMSDto> SMSes { get; set; }
-        public virtual ICollection<CallDto> Calls { get; set; }
+        public virtual IEnumerable<SMSDto> SMSes { get; set; }
+        public virtual IEnumerable<CallDto> Calls { get; set; }
 
     }
 }
