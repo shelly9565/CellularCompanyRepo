@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autofac;
+using BL.Registrations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,14 @@ namespace BL.Providers.Logic
 {
     public class OptimalPackageProvider
     {
+        private IContainer GetContainer()
+        {
+            return ModulesRegistrations.RegisterOptimalPackageModule();
+        }
+
+        public void FindOptimalPackage()
+        {
+
+        }
     }
 }

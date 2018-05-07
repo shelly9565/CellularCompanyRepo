@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Registrations.Logic.ProviderRegistration
+namespace BL.Registrations.Logic
 {
-    public class CRMRegisration : Module
+    public class CRMProviderRegistration : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

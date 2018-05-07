@@ -57,10 +57,13 @@
     <Compile Include="Providers\Info\PaymentProvider.cs" />
     <Compile Include="Providers\Info\SelectedNumberProvider.cs" />
     <Compile Include="Providers\Info\SmsProvider.cs" />
+    <Compile Include="Registrations\Logic\InvoiceProviderRegistration.cs" />
+    <Compile Include="Registrations\Logic\OptimalPackageProviderRegistration.cs" />
+    <Compile Include="Registrations\Logic\ReportEngineProviderRegistration.cs" />
     <Compile Include="Registrations\ModulesRegistrations.cs" />
-    <Compile Include="Registrations\ProviderRegistration\Logic\CRMRegisration.cs" />
-    <Compile Include="Registrations\ProviderRegistration\ProvidersRegistrations.cs" />
-    <Compile Include="Registrations\ReposRegistration.cs" />
+    <Compile Include="Registrations\Logic\CRMProviderRegistration.cs" />
+    <Compile Include="Registrations\Providers\ProvidersRegistrations.cs" />
+    <Compile Include="Registrations\Repos\ReposRegistration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

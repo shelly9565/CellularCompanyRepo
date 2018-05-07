@@ -15,5 +15,4 @@ namespace Common.Repos.Infra
         Task<LineDto> UpdateLine(int id, LineDto lineDto);
         Task<LineDto> DeleteLine(int id);
     }
-
 }

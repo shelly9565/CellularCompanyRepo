@@ -14,6 +14,5 @@ namespace Common.Infra.Providers.Info
         Task<CustomerTypeDto> AddCustomerType(CustomerTypeDto customerTypeDto);
         Task<CustomerTypeDto> UpdateCustomerType(int id, CustomerTypeDto customerTypeDto);
         Task<CustomerTypeDto> RemoveCustomerType(int id);
-
     }
 }

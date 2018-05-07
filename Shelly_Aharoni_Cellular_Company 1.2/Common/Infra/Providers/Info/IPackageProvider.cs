@@ -14,6 +14,5 @@ namespace Common.Infra.Providers.Info
         Task<PackageDto> AddPackage(PackageDto packageDto);
         Task<PackageDto> UpdatePackage(int id, PackageDto packageDto);
         Task<PackageDto> RemovePackage(int id);
-
     }
 }

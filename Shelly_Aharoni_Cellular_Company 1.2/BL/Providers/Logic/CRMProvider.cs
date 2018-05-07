@@ -15,10 +15,24 @@ namespace BL.Providers.Logic
     public class CRMProvider
     {
         private Object _obj;
+        private readonly ICustomerProvider _customerProvider;
+        private readonly IPaymentProvider _paymentProvider;
+        private readonly IPackageProvider _packageProvider;
+        private readonly ICustomerTypeProvider _customerTypeProvider;
+        private readonly ILineProvider _lineProvider;
+        private readonly IPackageIncludeProvider _packageIncludeProvider;
+        private readonly ISelectedNumberProvider _selectedNumberProvider;
 
         public CRMProvider()
         {
             _obj = new Object();
+            _customerProvider = GetContainer().Resolve<ICustomerProvider>();
+            _paymentProvider = GetContainer().Resolve<IPaymentProvider>();
+            _packageProvider = GetContainer().Resolve<IPackageProvider>();
+            _customerTypeProvider = GetContainer().Resolve<ICustomerTypeProvider>();
+            _lineProvider = GetContainer().Resolve<ILineProvider>();
+            _packageIncludeProvider = GetContainer().Resolve<IPackageIncludeProvider>();
+            _selectedNumberProvider = GetContainer().Resolve<ISelectedNumberProvider>();
         }
 
         private IContainer GetContainer()
@@ -59,6 +73,16 @@ namespace BL.Providers.Logic
             return await customerToUpdate;
         }
 
+        public async Task<LineDto> AddLine(LineDto line)
+        {
+            Task<LineDto> lineDto;
+            lock (_obj)
+            {
+                lineDto = _lineProvider.AddLine(line);
+            }
+            return await lineDto;
+        }
+ 
         //???????????????????????????????????????????????????????????????????????
         public async Task<PackageDto> UpdatePackage(string clientId, int lineId, PackageDto package)
         {
