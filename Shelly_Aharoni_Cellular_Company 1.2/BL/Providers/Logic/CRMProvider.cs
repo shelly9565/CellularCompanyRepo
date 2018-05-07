@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using BL.Registrations;
 using Common.Dtoes;
-using Common.Infra.Providers.Repo;
+using Common.Infra.Providers.Info;
 using Common.Repos.Infra;
 using System;
 using System.Collections.Generic;
@@ -31,8 +31,6 @@ namespace BL.Providers.Logic
             Task<CustomerDto> customerDto;
             lock (_obj)
             {
-                //ICustomerRepository customerRepository = GetContainer().Resolve<ICustomerRepository>();
-                //customerDto = customerRepository.CreateCustomer(customer);
                 ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
                 customerDto = customerProvider.AddCustomer(customer);
             }
@@ -44,8 +42,6 @@ namespace BL.Providers.Logic
             Task<CustomerDto> customerToDel;
             lock (_obj)
             {
-                //ICustomerRepository customerRepository = GetContainer().Resolve<ICustomerRepository>();
-                //customerToDel = customerRepository.DeleteCustomer(id);
                 ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
                 customerToDel = customerProvider.RemoveCustomer(id);
             }
@@ -57,8 +53,6 @@ namespace BL.Providers.Logic
             Task<CustomerDto> customerToUpdate;
             lock (_obj)
             {
-                //ICustomerRepository clientRepository = GetContainer().Resolve<ICustomerRepository>();
-                //customerToUpdate = clientRepository.UpdateCustomer(customer.CustomerId, customer);
                 ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
                 customerToUpdate = customerProvider.UpdateCustomer(customer.CustomerId, customer);
             }
@@ -71,8 +65,6 @@ namespace BL.Providers.Logic
             Task<PackageDto> packageToUpdate;
             lock (_obj)
             {
-                //IPackageRepository packageRepository = GetContainer().Resolve<IPackageRepository>();
-                //packageToUpdate = packageRepository.UpdatePackage(package, lineId, clientId);
                 IPackageProvider packageProvider = GetContainer().Resolve<IPackageProvider>();
                 packageToUpdate = packageProvider.UpdatePackage(package.PackageId, package);
             }
@@ -107,8 +99,6 @@ namespace BL.Providers.Logic
             Task<CustomerTypeDto> custmrTypeToUpdate;
             lock (_obj)
             {
-                //ICustomerRepository clientRepository = GetContainer().Resolve<ICustomerRepository>();
-                //customerDto = clientRepository.UpdateClientClientType(client, typeId);
                 ICustomerTypeProvider customerTypeProvider = GetContainer().Resolve<ICustomerTypeProvider>();
                 custmrTypeToUpdate = customerTypeProvider.UpdateCustomerType(customer.CustomerTypeId, customer.CustomerType);
 
@@ -123,8 +113,6 @@ namespace BL.Providers.Logic
                 IEnumerable<CustomerTypeDto> customerTypes;
                 lock (_obj)
                 {
-                    //ICustomerTypeRepository clientTypeRepository = GetContainer().Resolve<ICustomerTypeRepository>();
-                    //clientTypeDto = clientTypeRepository.AddOrUpdateClientType().Result;
                     ICustomerTypeProvider customerTypeProvider = GetContainer().Resolve<ICustomerTypeProvider>();
                     customerTypes = customerTypeProvider.GetAllCustomerTypes().Result;
                 }
