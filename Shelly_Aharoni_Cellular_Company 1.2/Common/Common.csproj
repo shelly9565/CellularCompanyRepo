@@ -48,6 +48,7 @@
     <Compile Include="Dtoes\SelectedNumberDto.cs" />
     <Compile Include="Dtoes\SMSDto.cs" />
     <Compile Include="Infra\Providers\BL\ICRMProvider.cs" />
+    <Compile Include="Infra\Providers\BL\IInvoiceProvider.cs" />
     <Compile Include="Infra\Providers\Info\IPackageProvider.cs" />
     <Compile Include="Infra\Providers\Info\IPaymentProvider.cs" />
     <Compile Include="Infra\Providers\Info\ISelectedNumberProvider.cs" />
