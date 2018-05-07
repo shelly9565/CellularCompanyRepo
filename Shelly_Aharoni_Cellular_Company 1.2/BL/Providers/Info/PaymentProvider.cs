@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Common.Dtoes;
-using Common.Infra.Providers.Repo;
+using Common.Infra.Providers.Info;
 using Common.Repos.Infra;
 using DAL.Repositories;
 using System;
