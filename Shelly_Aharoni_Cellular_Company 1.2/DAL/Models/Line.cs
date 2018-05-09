@@ -25,6 +25,10 @@ namespace DAL.Models
         public int PackageId { get; set; }
         public Package Package { get; set; }
 
+        [ForeignKey(nameof(PackageInclude))]
+        public int PackageIncludeId { get; set; }
+        public PackageInclude PackageInclude { get; set; }
+
         [ForeignKey(nameof(Customer))]
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }

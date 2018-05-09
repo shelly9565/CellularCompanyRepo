@@ -16,7 +16,7 @@ namespace DAL.Repositories
         {
             using (CellularCompanyContext db = new CellularCompanyContext())
             {
-                IEnumerable<SelectedNumber> selectedNumbers = await db.SelectedNumbers.ToListAsync();
+                IEnumerable<SelectedNumbers> selectedNumbers = await db.SelectedNumbers.ToListAsync();
                 return selectedNumbers.Select(cstmr => cstmr.ToDto()).ToList();
             }
         }
@@ -25,7 +25,7 @@ namespace DAL.Repositories
         {
             using (CellularCompanyContext db = new CellularCompanyContext())
             {
-                SelectedNumber selectedNumber = await db.SelectedNumbers.FindAsync(id);
+                SelectedNumbers selectedNumber = await db.SelectedNumbers.FindAsync(id);
                 return selectedNumber.ToDto();
             }
         }
@@ -55,7 +55,7 @@ namespace DAL.Repositories
                     if (sn == null) return null;
                     else
                     {
-                        SelectedNumber selectedNumber = selectedNumberDto.ToModel();
+                        SelectedNumbers selectedNumber = selectedNumberDto.ToModel();
                         db.Entry(selectedNumber).State = System.Data.Entity.EntityState.Modified;
                         await db.SaveChangesAsync();
                         return sn.ToDto();
@@ -68,7 +68,7 @@ namespace DAL.Repositories
         {
             using (CellularCompanyContext db = new CellularCompanyContext())
             {
-                SelectedNumber selectedNumber = await db.SelectedNumbers.FindAsync(id);
+                SelectedNumbers selectedNumber = await db.SelectedNumbers.FindAsync(id);
                 if (selectedNumber == null) return null;
                 else
                 {

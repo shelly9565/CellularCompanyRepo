@@ -22,7 +22,7 @@ namespace DAL
         public DbSet<Package> Packages { get; set; }
         public DbSet<PackageInclude> PackageIncludes { get; set; }
         public DbSet<Payment> Payments { get; set; }
-        public DbSet<SelectedNumber> SelectedNumbers { get; set; }
+        public DbSet<SelectedNumbers> SelectedNumbers { get; set; }
         public DbSet<SMS> SMSs { get; set; }
 
     }
