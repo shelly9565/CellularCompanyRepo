@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using BL.Providers.Logic;
+using Common.Infra.Providers.BL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
