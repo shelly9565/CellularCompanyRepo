@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Providers.BL
+namespace Common.Infra.Providers.BL
 {
     public class ICRMProvider
     {

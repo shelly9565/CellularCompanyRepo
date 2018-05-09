@@ -16,7 +16,6 @@ namespace BL.Providers.Logic
     {
         private Object _obj;
         private readonly ICustomerProvider _customerProvider;
-        private readonly IPaymentProvider _paymentProvider;
         private readonly IPackageProvider _packageProvider;
         private readonly ICustomerTypeProvider _customerTypeProvider;
         private readonly ILineProvider _lineProvider;
@@ -26,29 +25,27 @@ namespace BL.Providers.Logic
         public CRMProvider()
         {
             _obj = new Object();
-            _customerProvider = GetContainer().Resolve<ICustomerProvider>();
-            _paymentProvider = GetContainer().Resolve<IPaymentProvider>();
-            _packageProvider = GetContainer().Resolve<IPackageProvider>();
-            _customerTypeProvider = GetContainer().Resolve<ICustomerTypeProvider>();
-            _lineProvider = GetContainer().Resolve<ILineProvider>();
-            _packageIncludeProvider = GetContainer().Resolve<IPackageIncludeProvider>();
-            _selectedNumberProvider = GetContainer().Resolve<ISelectedNumberProvider>();
+            _customerProvider = ModulesRegistrations.RegisterCRMModule().Resolve<ICustomerProvider>();
+            _packageProvider = ModulesRegistrations.RegisterCRMModule().Resolve<IPackageProvider>();
+            _customerTypeProvider = ModulesRegistrations.RegisterCRMModule().Resolve<ICustomerTypeProvider>();
+            _lineProvider = ModulesRegistrations.RegisterCRMModule().Resolve<ILineProvider>();
+            _packageIncludeProvider = ModulesRegistrations.RegisterCRMModule().Resolve<IPackageIncludeProvider>();
+            _selectedNumberProvider = ModulesRegistrations.RegisterCRMModule().Resolve<ISelectedNumberProvider>();
         }
 
-        private IContainer GetContainer()
-        {
-            return ModulesRegistrations.RegisterCRMModule();
-        }
-
-        public async Task<CustomerDto> AddCustomer(CustomerDto customer)
-        {
-            Task<CustomerDto> customerDto;
-            lock (_obj)
+        public async Task<CustomerDto> AddCustomer(CustomerDto newCustomer)
+        { 
+            // must choose customer type, in order to add new customer
+            if (newCustomer.CustomerTypeId == 0 || newCustomer == null) return null;
+            else
             {
-                ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
-                customerDto = customerProvider.AddCustomer(customer);
+                Task<CustomerDto> customerDto;
+                lock (_obj)
+                {
+                    customerDto = _customerProvider.AddCustomer(newCustomer);
+                }
+                return await customerDto;
             }
-            return await customerDto;
         }
 
         public async Task<CustomerDto> RemoveCustomer(int id)
@@ -56,8 +53,7 @@ namespace BL.Providers.Logic
             Task<CustomerDto> customerToDel;
             lock (_obj)
             {
-                ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
-                customerToDel = customerProvider.RemoveCustomer(id);
+                customerToDel = _customerProvider.RemoveCustomer(id);
             }
             return await customerToDel;
         }
@@ -67,30 +63,46 @@ namespace BL.Providers.Logic
             Task<CustomerDto> customerToUpdate;
             lock (_obj)
             {
-                ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
-                customerToUpdate = customerProvider.UpdateCustomer(customer.CustomerId, customer);
+                customerToUpdate = _customerProvider.UpdateCustomer(customer.CustomerId, customer);
             }
             return await customerToUpdate;
         }
 
-        public async Task<LineDto> AddLine(LineDto line)
+        public async Task<LineDto> AddLine(LineDto newLine)
         {
             Task<LineDto> lineDto;
             lock (_obj)
             {
-                lineDto = _lineProvider.AddLine(line);
+                lineDto = _lineProvider.AddLine(newLine);
             }
             return await lineDto;
         }
- 
-        //???????????????????????????????????????????????????????????????????????
+
+        public async Task<PackageDto> AddPackage(PackageDto newPackage)
+        {
+            Task<PackageDto> packageDto;
+            lock (_obj)
+            {
+                packageDto = _packageProvider.AddPackage(newPackage);
+            }
+            return await packageDto;
+        }
+
+        public async Task<bool> AddSubscription(CustomerDto customer, LineDto line, PackageDto package)
+        {
+            Task<LineDto> lineDto = AddLine(line);
+            Task<CustomerDto> customerDto = AddCustomer(customer);
+            Task<PackageDto> packageDto = AddPackage(package);
+            if (lineDto == null || packageDto == null || customerDto == null) return false;
+            else return true;
+        }
+
         public async Task<PackageDto> UpdatePackage(string clientId, int lineId, PackageDto package)
         {
             Task<PackageDto> packageToUpdate;
             lock (_obj)
             {
-                IPackageProvider packageProvider = GetContainer().Resolve<IPackageProvider>();
-                packageToUpdate = packageProvider.UpdatePackage(package.PackageId, package);
+                packageToUpdate = _packageProvider.UpdatePackage(package.PackageId, package);
             }
             return await packageToUpdate;
         }
@@ -100,8 +112,7 @@ namespace BL.Providers.Logic
             Task<IEnumerable<CustomerDto>> customers;
             lock (_obj)
             {
-                ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
-                customers = customerProvider.GetAllCustomers();
+                customers = _customerProvider.GetAllCustomers();
             }
             return await customers;
         }
@@ -111,8 +122,7 @@ namespace BL.Providers.Logic
             Task<CustomerDto> customer;
             lock (_obj)
             {
-                ICustomerProvider customerProvider = GetContainer().Resolve<ICustomerProvider>();
-                customer = customerProvider.GetCustomer(id);
+                customer = _customerProvider.GetCustomer(id);
             }
             return await customer;
         }
@@ -123,8 +133,7 @@ namespace BL.Providers.Logic
             Task<CustomerTypeDto> custmrTypeToUpdate;
             lock (_obj)
             {
-                ICustomerTypeProvider customerTypeProvider = GetContainer().Resolve<ICustomerTypeProvider>();
-                custmrTypeToUpdate = customerTypeProvider.UpdateCustomerType(customer.CustomerTypeId, customer.CustomerType);
+                custmrTypeToUpdate = _customerTypeProvider.UpdateCustomerType(customer.CustomerTypeId, customer.CustomerType);
 
             }
             return await custmrTypeToUpdate;
@@ -137,8 +146,7 @@ namespace BL.Providers.Logic
                 IEnumerable<CustomerTypeDto> customerTypes;
                 lock (_obj)
                 {
-                    ICustomerTypeProvider customerTypeProvider = GetContainer().Resolve<ICustomerTypeProvider>();
-                    customerTypes = customerTypeProvider.GetAllCustomerTypes().Result;
+                    customerTypes = _customerTypeProvider.GetAllCustomerTypes().Result;
                 }
                 return customerTypes;
             }

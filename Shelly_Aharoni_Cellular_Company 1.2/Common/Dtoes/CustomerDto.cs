@@ -29,9 +29,7 @@ namespace Common.Dtoes
         [DataMember]
         public CustomerTypeDto CustomerType { get; set; }
 
-        [DataMember]
         public virtual IEnumerable<PaymentDto> Payments { get; set; }
-        [DataMember]
         public virtual IEnumerable<LineDto> Lines { get; set; }
 
         public override string ToString()
