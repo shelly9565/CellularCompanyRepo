@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using BL.Registrations;
 using Common.Dtoes;
+using Common.Infra.Providers.BL;
 using Common.Infra.Providers.Info;
 using Common.Repos.Infra;
 using System;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace BL.Providers.Logic
 {
-    public class CRMProvider
+    public class CRMProvider:ICRMProvider
     {
         private Object _obj;
         private readonly ICustomerProvider _customerProvider;

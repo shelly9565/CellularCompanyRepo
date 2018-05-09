@@ -63,21 +63,21 @@ namespace BL.Providers.Logic
 
         public void ExportDataToExcel()
         {
-            using (ExcelPackage excel = new ExcelPackage())
-            {
-                excel.Workbook.Worksheets.Add("Worksheet1");
+            //using (ExcelPackage excel = new ExcelPackage())
+            //{
+            //    excel.Workbook.Worksheets.Add("Worksheet1");
 
-                List<string[]> headerRow = new List<string[]>()
-                {
-                 new string[] { "Line", "Permanent Billings", "Changed Billings", "Packages Use" }
-                };
-                string headerRange = "A1:" + Char.ConvertFromUtf32(headerRow[0].Length + 64) + "1";
-                var excelWorksheet = excel.Workbook.Worksheets["Worksheet1"];
-                excelWorksheet.Cells[headerRange].LoadFromArrays(headerRow);
+            //    List<string[]> headerRow = new List<string[]>()
+            //    {
+            //     new string[] { "Line", "Permanent Billings", "Changed Billings", "Packages Use" }
+            //    };
+            //    string headerRange = "A1:" + Char.ConvertFromUtf32(headerRow[0].Length + 64) + "1";
+            //    var excelWorksheet = excel.Workbook.Worksheets["Worksheet1"];
+            //    excelWorksheet.Cells[headerRange].LoadFromArrays(headerRow);
 
-                FileInfo excelFile = new FileInfo(@"C:\Users\idoda\Desktop\MonthlyBilling\test.xlsx");
-                excel.SaveAs(excelFile);
-            }
+            //    FileInfo excelFile = new FileInfo(@"C:\Users\idoda\Desktop\MonthlyBilling\test.xlsx");
+            //    excel.SaveAs(excelFile);
+            //}
         }
     }
 }

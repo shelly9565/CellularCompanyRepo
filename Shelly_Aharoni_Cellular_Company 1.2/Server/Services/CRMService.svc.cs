@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using BL.Providers.Logic;
 using Common.Dtoes;
 using Common.Infra.Providers.BL;
+using Server.Services;
 
-namespace Server.Services
+namespace Server
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class CRMService : ICRMService
@@ -29,7 +30,5 @@ namespace Server.Services
         public void DoWork()
         {
         }
-
-
     }
 }
