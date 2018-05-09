@@ -35,7 +35,6 @@ namespace DAL.Models
 
         [ForeignKey(nameof(CustomerType))]
         public int CustomerTypeId { get; set; }
-
         public CustomerType CustomerType { get; set; }
 
         public virtual ICollection<Payment> Payments { get; set; }

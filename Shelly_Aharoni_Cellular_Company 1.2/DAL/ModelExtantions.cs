@@ -237,7 +237,7 @@ namespace DAL
             };
         }
 
-        public static SelectedNumberDto ToDto(this SelectedNumber selectedNumber)
+        public static SelectedNumberDto ToDto(this SelectedNumbers selectedNumber)
         {
             if (selectedNumber == null) return null;
             return new SelectedNumberDto
@@ -250,10 +250,10 @@ namespace DAL
             };
         }
 
-        public static SelectedNumber ToModel(this SelectedNumberDto selectedNumberDto)
+        public static SelectedNumbers ToModel(this SelectedNumberDto selectedNumberDto)
         {
             if (selectedNumberDto == null) return null;
-            return new SelectedNumber
+            return new SelectedNumbers
             {
                 SelectedNumberId = selectedNumberDto.SelectedNumberId,
                 FirstNumber = selectedNumberDto.FirstNumber,
