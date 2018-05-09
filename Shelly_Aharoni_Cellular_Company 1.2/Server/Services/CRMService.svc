@@ -1,2 +1,2 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="Server.Services.CRMService, Server.Services" CodeBehind="CRMService.svc.cs" 
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Server.CRMService, Server" CodeBehind="CRMService.svc.cs" 
     Factory="Autofac.Integration.Wcf.AutofacServiceHostFactory, Autofac.Integration.Wcf" %>
