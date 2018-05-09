@@ -7,12 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Registrations.Providers
+namespace BL.Registrations.Providers.InfoProvidersRegistration
 {
-    //public class ProviderRegistrations
-    //{
-    //}
-
     public class CallProviderRegistration : Module
     {
         protected override void Load(ContainerBuilder builder)
@@ -23,7 +19,6 @@ namespace BL.Registrations.Providers
             base.Load(builder);
         }
     }
-
     public class ClientProviderRegistration : Module
     {
         protected override void Load(ContainerBuilder builder)
@@ -104,6 +99,5 @@ namespace BL.Registrations.Providers
             base.Load(builder);
         }
     }
-
 
 }
