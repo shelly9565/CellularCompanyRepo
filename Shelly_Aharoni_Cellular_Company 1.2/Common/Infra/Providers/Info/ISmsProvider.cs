@@ -14,6 +14,5 @@ namespace Common.Infra.Providers.Info
         Task<SMSDto> AddSMS(SMSDto smsDto);
         Task<SMSDto> UpdateSMS(int id, SMSDto smsDto);
         Task<SMSDto> RemoveSMS(int id);
-
     }
 }

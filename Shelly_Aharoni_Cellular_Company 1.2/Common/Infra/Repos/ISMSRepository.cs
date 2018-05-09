@@ -15,5 +15,4 @@ namespace Common.Repos.Infra
         Task<SMSDto> UpdateSMS(int id, SMSDto smsDto);
         Task<SMSDto> DeleteSMS(int id);
     }
-
 }

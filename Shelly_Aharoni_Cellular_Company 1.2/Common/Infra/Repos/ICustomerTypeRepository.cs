@@ -15,5 +15,4 @@ namespace Common.Repos.Infra
         Task<CustomerTypeDto> UpdateCustomerType(int id, CustomerTypeDto customerTypeDto);
         Task<CustomerTypeDto> DeleteCustomerType(int id);
     }
-
 }

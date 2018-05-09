@@ -14,6 +14,5 @@ namespace Common.Repos.Infra
         Task<CallDto> CreateCall(CallDto callDto);
         Task<CallDto> UpdateCall(int id, CallDto callDto);
         Task<CallDto> DeleteCall(int id);
-
     }
 }

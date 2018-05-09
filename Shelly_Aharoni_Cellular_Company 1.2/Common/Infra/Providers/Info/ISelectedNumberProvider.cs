@@ -14,6 +14,5 @@ namespace Common.Infra.Providers.Info
         Task<SelectedNumberDto> AddSelectedNumber(SelectedNumberDto selectedNumberDto);
         Task<SelectedNumberDto> UpdateSelectedNumber(int id, SelectedNumberDto selectedNumberDto);
         Task<SelectedNumberDto> RemoveSelectedNumber(int id);
-
     }
 }

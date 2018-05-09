@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using BL.Registrations.ProvidersRegistration;
+using BL.Registrations.Logic;
+using BL.Registrations.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

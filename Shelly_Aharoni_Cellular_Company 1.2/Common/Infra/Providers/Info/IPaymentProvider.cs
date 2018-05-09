@@ -14,6 +14,5 @@ namespace Common.Infra.Providers.Info
         Task<PaymentDto> AddPayment(PaymentDto paymentDto);
         Task<PaymentDto> UpdatePayment(int id, PaymentDto paymentDto);
         Task<PaymentDto> RemovePayment(int id);
-
     }
 }

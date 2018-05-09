@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Registrations.ProvidersRegistration
+namespace BL.Registrations.Providers
 {
     //public class ProviderRegistrations
     //{
@@ -88,7 +88,7 @@ namespace BL.Registrations.ProvidersRegistration
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Providers.Info.SelectedNumberProvider>()
+            builder.RegisterType<SelectedNumberProvider>()
                 .As<ISelectedNumberProvider>()
                 .SingleInstance();
             base.Load(builder);

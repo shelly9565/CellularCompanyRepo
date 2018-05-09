@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Registrations.ReposRegistration
+namespace BL.Registrations.Repos.ReposRegistration
 {
     //class ReposRegistration
     //{
