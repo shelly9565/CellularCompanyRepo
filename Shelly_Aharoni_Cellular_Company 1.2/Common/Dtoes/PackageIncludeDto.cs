@@ -30,9 +30,8 @@ namespace Common.Dtoes
         public int? FavoriteNumbersId { get; set; }
         [DataMember]
         public SelectedNumberDto SelectedNumber { get; set; }
-        [DataMember]
-        public int PackageId { get; set; }
-        [DataMember]
-        public PackageDto Package { get; set; }
+
+        public LineDto Line { get; set; }
+
     }
 }

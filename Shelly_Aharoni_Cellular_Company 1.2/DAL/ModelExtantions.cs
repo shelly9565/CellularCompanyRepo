@@ -154,7 +154,6 @@ namespace DAL
                 PackageId = package.PackageId,
                 PackageName = package.PackageName,
                 PackageTotalPrice = package.PackageTotalPrice,
-                PackageIncludes = package.PackageIncludes.Select(packageInclude => packageInclude.ToDto()).ToList(),
                 Lines = package.Lines.Select(line => line.ToDto()).ToList()
             };
         }
@@ -167,7 +166,6 @@ namespace DAL
                 PackageId = packageDto.PackageId,
                 PackageName = packageDto.PackageName,
                 PackageTotalPrice = packageDto.PackageTotalPrice,
-                PackageIncludes = packageDto.PackageIncludes.Select(packageInclude => packageInclude.ToModel()).ToList(),
                 Lines = packageDto.Lines.Select(line => line.ToModel()).ToList()
             };
         }
@@ -218,7 +216,7 @@ namespace DAL
             {
                 CustomerId = payment.CustomerId,
                 PaymentId = payment.PaymentId,
-                Date = payment.PayDate,
+                PayDate = payment.PayDate,
                 TotalPayment = payment.TotalPayment,
                 Customer = payment.Customer.ToDto()
             };
@@ -231,7 +229,7 @@ namespace DAL
             {
                 CustomerId = paymentDto.CustomerId,
                 PaymentId = paymentDto.PaymentId,
-                PayDate = paymentDto.Date,
+                PayDate = paymentDto.PayDate,
                 TotalPayment = paymentDto.TotalPayment,
                 Customer = paymentDto.Customer.ToModel()
             };
