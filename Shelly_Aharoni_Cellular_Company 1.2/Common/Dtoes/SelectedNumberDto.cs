@@ -20,7 +20,7 @@ namespace Common.Dtoes
         [DataMember]
         public string ThirdNumber { get; set; }
 
-        public virtual IEnumerable<PackageIncludeDto> PackageIncludes { get; set; }
+        public virtual PackageIncludeDto PackageIncludes { get; set; }
 
     }
 }

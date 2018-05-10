@@ -9,10 +9,6 @@ using System.Threading.Tasks;
 
 namespace BL.Registrations.Repos.ReposRegistration
 {
-    //class ReposRegistration
-    //{
-    //}
-
     public class CallRepoRegistration : Module
     {
         protected override void Load(ContainerBuilder builder)

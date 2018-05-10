@@ -17,11 +17,11 @@ namespace Common.Dtoes
         [DataMember]
         public string IncludeName { get; set; }
         [DataMember]
-        public int? MaxMinute { get; set; }
+        public int MaxMinute { get; set; }
         [DataMember]
-        public double? FixedPrice { get; set; }
+        public double FixedPrice { get; set; }
         [DataMember]
-        public double? DiscountPrecentage { get; set; }
+        public double DiscountPrecentage { get; set; }
         [DataMember]
         public string MostCalledNumber { get; set; }
         [DataMember]
