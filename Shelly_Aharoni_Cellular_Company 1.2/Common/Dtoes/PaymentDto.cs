@@ -15,7 +15,7 @@ namespace Common.Dtoes
         [DataMember]
         public int PaymentId { get; set; }
         [DataMember]
-        public DateTime Date { get; set; }
+        public DateTime PayDate { get; set; }
         [DataMember]
         public double TotalPayment { get; set; }
         [DataMember]

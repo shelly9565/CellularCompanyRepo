@@ -31,6 +31,10 @@ namespace Common.Dtoes
         [DataMember]
         public PackageDto Package { get; set; }
         [DataMember]
+        public int PackageIncludeId { get; set; }
+        [DataMember]
+        public PackageIncludeDto PackageInclude { get; set; }
+        [DataMember]
         public int CustomerId { get; set; }
         [DataMember]
         public CustomerDto Customer { get; set; }

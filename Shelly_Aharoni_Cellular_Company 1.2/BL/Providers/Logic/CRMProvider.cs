@@ -97,10 +97,12 @@ namespace BL.Providers.Logic
             if (lineDto == null || packageDto == null || customerDto == null) return false;
             else return true;
         }
+
         public async Task<bool> AddFullLine( LineDto line, PackageIncludeDto packageInclude, SelectedNumberDto selectedNumber, CustomerDto customer)
         {
             return true;
         }
+
         public async Task<PackageDto> UpdatePackage(string clientId, int lineId, PackageDto package)
         {
             Task<PackageDto> packageToUpdate;
