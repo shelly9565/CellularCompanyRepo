@@ -177,14 +177,13 @@ namespace DAL
             {
                 PackageIncludeId = packageInclude.PackageIncludeId,
                 FavoriteNumbersId = packageInclude.FavoriteNumbersId,
-                PackageId = packageInclude.PackageId,
+                Line = packageInclude.Line.ToDto(),
                 FixedPrice = packageInclude.FixedPrice,
                 IncludeName = packageInclude.IncludeName,
                 DiscountPrecentage = packageInclude.DiscountPrecentage,
                 MaxMinute = packageInclude.MaxMinute,
                 MostCalledNumber = packageInclude.MostCalledNumber,
                 InsideFamilyCalls = packageInclude.InsideFamilyCalls,
-                Package = packageInclude.Package.ToDto(),
                 SelectedNumber = packageInclude.SelectedNumber.ToDto()
             };
         }
@@ -196,16 +195,14 @@ namespace DAL
             {
                 PackageIncludeId = packageIncludeDto.PackageIncludeId,
                 FavoriteNumbersId = packageIncludeDto.FavoriteNumbersId,
-                PackageId = packageIncludeDto.PackageId,
+                Line = packageIncludeDto.Line.ToModel(),
                 FixedPrice = packageIncludeDto.FixedPrice,
                 IncludeName = packageIncludeDto.IncludeName,
                 DiscountPrecentage = packageIncludeDto.DiscountPrecentage,
                 MaxMinute = packageIncludeDto.MaxMinute,
                 MostCalledNumber = packageIncludeDto.MostCalledNumber,
                 InsideFamilyCalls = packageIncludeDto.InsideFamilyCalls,
-                Package = packageIncludeDto.Package.ToModel(),
                 SelectedNumber = packageIncludeDto.SelectedNumber.ToModel()
-
             };
         }
 
@@ -244,7 +241,7 @@ namespace DAL
                 FirstNumber = selectedNumber.FirstNumber,
                 SecondNumber = selectedNumber.SecondNumber,
                 ThirdNumber = selectedNumber.ThirdNumber,
-                PackageIncludes = selectedNumber.PackageIncludes.Select(packageIncludes => packageIncludes.ToDto()).ToList()
+                PackageIncludes = selectedNumber.PackageIncludes.ToDto()
             };
         }
 
@@ -257,8 +254,7 @@ namespace DAL
                 FirstNumber = selectedNumberDto.FirstNumber,
                 SecondNumber = selectedNumberDto.SecondNumber,
                 ThirdNumber = selectedNumberDto.ThirdNumber,
-                PackageIncludes = selectedNumberDto.PackageIncludes.Select(packageIncludes => packageIncludes.ToModel()).ToList()
-
+                PackageIncludes = selectedNumberDto.PackageIncludes.ToModel()
             };
         }
 
