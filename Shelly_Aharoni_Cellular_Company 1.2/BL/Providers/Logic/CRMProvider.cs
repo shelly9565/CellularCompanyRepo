@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace BL.Providers.Logic
 {
-    public class CRMProvider:ICRMProvider
+    public class CRMProvider : ICRMProvider
     {
         private Object _obj;
         private readonly ICustomerProvider _customerProvider;
@@ -35,7 +35,7 @@ namespace BL.Providers.Logic
         }
 
         public async Task<CustomerDto> AddCustomer(CustomerDto newCustomer)
-        { 
+        {
             // must choose customer type, in order to add new customer
             if (newCustomer.CustomerTypeId == 0 || newCustomer == null) return null;
             else
@@ -98,9 +98,21 @@ namespace BL.Providers.Logic
             else return true;
         }
 
-        public async Task<bool> AddFullLine( LineDto line, PackageIncludeDto packageInclude, SelectedNumberDto selectedNumber, CustomerDto customer)
+        public async Task<bool> AddFullLine(LineDto line, PackageIncludeDto packageInclude, SelectedNumberDto selectedNumber, CustomerDto customer)
         {
-            return true;
+            lock (_obj)
+            {
+                LineDto newLine = _lineProvider.AddLine(line).Result;
+                PackageIncludeDto newPackageInclude = _packageIncludeProvider.AddPackageInclude(packageInclude).Result;
+                CustomerDto newCustomer = _customerProvider.AddCustomer(customer).Result;
+                SelectedNumberDto newSelectedNumber = _selectedNumberProvider.AddSelectedNumber(selectedNumber).Result;
+                newPackageInclude.Line = newLine;
+                line.Customer = newCustomer;
+                line.CustomerId = newCustomer.CustomerId;
+                packageInclude.SelectedNumber = newSelectedNumber;
+                line.PackageInclude = newPackageInclude;
+                return true;
+            }
         }
 
         public async Task<PackageDto> UpdatePackage(string clientId, int lineId, PackageDto package)
@@ -161,6 +173,78 @@ namespace BL.Providers.Logic
                 Debug.WriteLine(ex.Message);
             }
             return null;
+        }
+
+
+        public async Task<LineDto> RemoveLine(int id)
+        {
+            Task<LineDto> line;
+            lock (_obj)
+            {
+                line = _lineProvider.RemoveLine(id);
+            }
+            return await line;
+        }
+
+        public async Task<CustomerDto> UpdateCustomer(int customerId, CustomerDto customer )
+        {
+            Task<CustomerDto> customerDto;
+            lock (_obj)
+            {
+                customerDto = _customerProvider.UpdateCustomer(customerId, customer);
+            }
+            return await customerDto;
+        }
+
+        public async Task<LineDto> UpdateLine(int lineId, LineDto line)
+        {
+            Task<LineDto> lineDto;
+            lock (_obj)
+            {
+                lineDto = _lineProvider.UpdateLine(lineId, line);
+            }
+            return await lineDto;
+        }
+
+        public async Task<IEnumerable<string>> GetSelectedNumbers(int lineId)
+        {
+            Task<IEnumerable<string>> list;
+            lock (_obj)
+            {
+                list= _selectedNumberProvider.GetSelectedNumbersByLine(lineId);
+            }
+            return await list;
+        }
+
+        public IEnumerable<int> GetCustomersIds()
+        {
+            List<int> list;
+            lock(_obj)
+            {
+                IEnumerable<CustomerDto> l = _customerProvider.GetAllCustomers().Result;
+                list = l.Select(c => c.CustomerId).ToList();
+            }
+            return list;
+        }
+
+        public async Task<IEnumerable<PackageDto>> GetPackages()
+        {
+            Task<IEnumerable<PackageDto>> packages;
+            lock(_obj)
+            {
+                packages = _packageProvider.GetAllPackages();
+            }
+            return await packages;
+        }
+
+        public IEnumerable<LineDto> GetLineForCustomer(int customerId)
+        {
+            IEnumerable<LineDto> lines;
+            lock(_obj)
+            {
+                lines = _lineProvider.GetAllLines().Result.Where(l => l.CustomerId == customerId).ToList();
+            }
+            return lines;
         }
     }
 }

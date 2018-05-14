@@ -96,7 +96,7 @@
     <Compile Include="Services\CRMService.svc.cs">
       <DependentUpon>CRMService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Services\ICRMService.cs" />
+    <Compile Include="ServicesInfra\ICRMService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj">

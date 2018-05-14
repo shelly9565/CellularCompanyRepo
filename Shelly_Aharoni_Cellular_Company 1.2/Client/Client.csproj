@@ -95,6 +95,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\CRMServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -107,8 +112,44 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Client_TemporaryKey.pfx" />
+    <None Include="Connected Services\CRMServiceReference\Client.CRMServiceReference.CustomerDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CRMServiceReference\Client.CRMServiceReference.CustomerTypeDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CRMServiceReference\Client.CRMServiceReference.LineDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CRMServiceReference\Client.CRMServiceReference.PackageDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CRMServiceReference\CRMService.wsdl" />
+    <None Include="Connected Services\CRMServiceReference\CRMService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CRMServiceReference\CRMService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CRMServiceReference\CRMService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CRMServiceReference\CRMService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CRMServiceReference\CRMService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\CRMServiceReference\CRMService.disco" />
+    <None Include="Connected Services\CRMServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\CRMServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\CRMServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -135,6 +176,12 @@
     <PackageReference Include="MvvmLight">
       <Version>5.4.1</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CRMServiceReference\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
