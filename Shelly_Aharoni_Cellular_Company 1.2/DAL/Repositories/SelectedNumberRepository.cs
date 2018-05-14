@@ -4,6 +4,7 @@ using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,27 @@ namespace DAL.Repositories
                 return selectedNumbers.Select(cstmr => cstmr.ToDto()).ToList();
             }
         }
+
+        public async Task<IEnumerable<string>> GetSelectedNumberByLine(int lineId)
+        {
+            
+            using (CellularCompanyContext db = new CellularCompanyContext())
+            {
+                try
+                {
+                    IEnumerable<string> selectedNumbers = new List<string>();
+                    SelectedNumbers selectedNum = db.SelectedNumbers.FirstOrDefault(s => s.PackageIncludes.Line.LineId == lineId);
+                    var prop=db.Entry(selectedNum).CurrentValues.PropertyNames.Where(p => p.EndsWith("Number"));
+                    return prop;
+                }
+                catch(Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
+
 
         public async Task<SelectedNumberDto> GetSelectedNumber(int id)
         {

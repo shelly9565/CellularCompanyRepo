@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Common.Dtoes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Common.Dtoes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:57594/Services/CRMService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/" />
+  <xs:complexType name="LineDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Customer" nillable="true" type="tns:CustomerDto" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="LineId" type="xs:int" />
+      <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Package" nillable="true" type="tns:PackageDto" />
+      <xs:element minOccurs="0" name="PackageId" type="xs:int" />
+      <xs:element minOccurs="0" name="PackageInclude" nillable="true" type="tns:PackageIncludeDto" />
+      <xs:element minOccurs="0" name="PackageIncludeId" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="Status" type="q1:Status" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineDto" nillable="true" type="tns:LineDto" />
+  <xs:complexType name="CustomerDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CallsToCenter" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ContactNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerType" nillable="true" type="tns:CustomerTypeDto" />
+      <xs:element minOccurs="0" name="CustomerTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerDto" nillable="true" type="tns:CustomerDto" />
+  <xs:complexType name="CustomerTypeDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="MinutePrice" type="xs:double" />
+      <xs:element minOccurs="0" name="SMSPrice" type="xs:double" />
+      <xs:element minOccurs="0" name="TypeName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerTypeDto" nillable="true" type="tns:CustomerTypeDto" />
+  <xs:complexType name="PackageDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PackageId" type="xs:int" />
+      <xs:element minOccurs="0" name="PackageName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PackageTotalPrice" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackageDto" nillable="true" type="tns:PackageDto" />
+  <xs:complexType name="PackageIncludeDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DiscountPrecentage" type="xs:double" />
+      <xs:element minOccurs="0" name="FavoriteNumbersId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FixedPrice" type="xs:double" />
+      <xs:element minOccurs="0" name="IncludeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InsideFamilyCalls" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaxMinute" type="xs:int" />
+      <xs:element minOccurs="0" name="MostCalledNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PackageIncludeId" type="xs:int" />
+      <xs:element minOccurs="0" name="SelectedNumber" nillable="true" type="tns:SelectedNumberDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackageIncludeDto" nillable="true" type="tns:PackageIncludeDto" />
+  <xs:complexType name="SelectedNumberDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FirstNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SecondNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SelectedNumberId" type="xs:int" />
+      <xs:element minOccurs="0" name="ThirdNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SelectedNumberDto" nillable="true" type="tns:SelectedNumberDto" />
+  <xs:complexType name="ArrayOfCustomerDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerDto" nillable="true" type="tns:CustomerDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerDto" nillable="true" type="tns:ArrayOfCustomerDto" />
+  <xs:complexType name="ArrayOfCustomerTypeDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerTypeDto" nillable="true" type="tns:CustomerTypeDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerTypeDto" nillable="true" type="tns:ArrayOfCustomerTypeDto" />
+  <xs:complexType name="ArrayOfPackageDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PackageDto" nillable="true" type="tns:PackageDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPackageDto" nillable="true" type="tns:ArrayOfPackageDto" />
+  <xs:complexType name="ArrayOfLineDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LineDto" nillable="true" type="tns:LineDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLineDto" nillable="true" type="tns:ArrayOfLineDto" />
+</xs:schema>

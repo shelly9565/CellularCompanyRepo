@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using BL.Providers.Logic;
 using Common.Dtoes;
 using Common.Infra.Providers.BL;
-using Server.Services;
+using Server.ServicesInfra;
 
 namespace Server
 {
@@ -22,13 +22,61 @@ namespace Server
             _CRMProvider = CRMProvider;
         }
 
-        public Task<bool> AddFullLine(LineDto line, PackageIncludeDto packageInclude, SelectedNumberDto selectedNumber, CustomerDto customer)
+        public async Task<CustomerDto> AddCustomer(CustomerDto customer)
         {
-            return _CRMProvider.AddFullLine(line, packageInclude, selectedNumber, customer);
+            return await _CRMProvider.AddCustomer(customer);
+        }
+
+        public async Task<bool> AddFullLine(LineDto line, PackageIncludeDto packageInclude, SelectedNumberDto selectedNumber, CustomerDto customer)
+        {
+            return await _CRMProvider.AddFullLine(line, packageInclude, selectedNumber, customer);
         }
 
         public void DoWork()
         {
+        }
+
+        public async Task<IEnumerable<CustomerDto>> GetAllCustomers()
+        {
+            return await _CRMProvider.GetAllCustomers();
+        }
+        public IEnumerable<int> GetCustomersIds()
+        {
+            return _CRMProvider.GetCustomersIds();
+        }
+        public async Task<IEnumerable<CustomerTypeDto>> GetCustomerTypes()
+        {
+            return await _CRMProvider.GetCustomerTypes();
+        }
+        public IEnumerable<LineDto> GetLineForCustomer(int customerId)
+        {
+            return _CRMProvider.GetLineForCustomer(customerId);
+        }
+        public async Task<IEnumerable<PackageDto>> GetPackages()
+        {
+            return await _CRMProvider.GetPackages();
+        }
+        public async Task<IEnumerable<string>> GetSelectedNumbers(int lineId)
+        {
+            return await _CRMProvider.GetSelectedNumbers(lineId);
+        }
+        public async Task<CustomerDto> RemoveCustomer(int id)
+        {
+            return await _CRMProvider.RemoveCustomer(id);
+        }
+        public async Task<LineDto> RemoveLine(int id)
+        {
+            return await _CRMProvider.RemoveLine(id);
+        }
+
+        public async Task<CustomerDto> UpdateCustomer(CustomerDto customer)
+        {
+            return await _CRMProvider.UpdateCustomer(customer);
+        }
+
+        public async Task<LineDto> UpdateLine(int lineId, LineDto line)
+        {
+            return await _CRMProvider.UpdateLine(lineId, line);
         }
     }
 }

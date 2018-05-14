@@ -14,5 +14,6 @@ namespace Common.Repos.Infra
         Task<SelectedNumberDto> CreateSelectedNumber(SelectedNumberDto selectedNumberDto);
         Task<SelectedNumberDto> UpdateSelectedNumber(int id, SelectedNumberDto selectedNumberDto);
         Task<SelectedNumberDto> DeleteSelectedNumber(int id);
+        Task<IEnumerable<string>> GetSelectedNumberByLine(int lineId);
     }
 }

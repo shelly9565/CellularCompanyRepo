@@ -46,5 +46,10 @@ namespace BL.Providers.Info
         {
             return await GetContainer().Resolve<ISelectedNumberRepository>().UpdateSelectedNumber(id, selectedNumberDto);
         }
+
+        public async Task<IEnumerable<string>> GetSelectedNumbersByLine(int lineId)
+        {
+            return await GetContainer().Resolve<ISelectedNumberRepository>().GetSelectedNumberByLine(lineId);
+        }
     }
 }
