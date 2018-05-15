@@ -14,9 +14,6 @@ namespace Server.ServicesInfra
     public interface ICRMService
     {
         [OperationContract]
-        void DoWork();
-
-        [OperationContract]
         Task<bool> AddFullLine(LineDto line, PackageIncludeDto packageInclude, SelectedNumberDto selectedNumber, CustomerDto customer);
         [OperationContract]
         Task<CustomerDto> AddCustomer(CustomerDto customer);
