@@ -32,10 +32,6 @@ namespace Server
             return await _CRMProvider.AddFullLine(line, packageInclude, selectedNumber, customer);
         }
 
-        public void DoWork()
-        {
-        }
-
         public async Task<IEnumerable<CustomerDto>> GetAllCustomers()
         {
             return await _CRMProvider.GetAllCustomers();

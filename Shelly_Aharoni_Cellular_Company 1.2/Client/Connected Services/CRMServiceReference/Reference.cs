@@ -681,9 +681,6 @@ namespace Client.CRMServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CRMServiceReference.ICRMService")]
     public interface ICRMService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/DoWork", ReplyAction="http://tempuri.org/ICRMService/DoWorkResponse")]
-        System.Threading.Tasks.Task DoWorkAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/AddFullLine", ReplyAction="http://tempuri.org/ICRMService/AddFullLineResponse")]
         System.Threading.Tasks.Task<bool> AddFullLineAsync(Client.CRMServiceReference.LineDto line, Client.CRMServiceReference.PackageIncludeDto packageInclude, Client.CRMServiceReference.SelectedNumberDto selectedNumber, Client.CRMServiceReference.CustomerDto customer);
         
@@ -762,10 +759,6 @@ namespace Client.CRMServiceReference {
         
         public CRMServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        public System.Threading.Tasks.Task DoWorkAsync() {
-            return base.Channel.DoWorkAsync();
         }
         
         public System.Threading.Tasks.Task<bool> AddFullLineAsync(Client.CRMServiceReference.LineDto line, Client.CRMServiceReference.PackageIncludeDto packageInclude, Client.CRMServiceReference.SelectedNumberDto selectedNumber, Client.CRMServiceReference.CustomerDto customer) {
