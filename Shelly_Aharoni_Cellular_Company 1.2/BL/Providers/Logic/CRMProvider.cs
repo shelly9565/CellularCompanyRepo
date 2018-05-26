@@ -157,16 +157,14 @@ namespace BL.Providers.Logic
             return await custmrTypeToUpdate;
         }
 
-        public async Task<IEnumerable<CustomerTypeDto>> GetCustomerTypes()
+        public IEnumerable<CustomerTypeDto> GetCustomerTypes()
         {
             try
             {
-                IEnumerable<CustomerTypeDto> customerTypes;
                 lock (_obj)
                 {
-                    customerTypes = _customerTypeProvider.GetAllCustomerTypes().Result;
+                    return _customerTypeProvider.GetAllCustomerTypes();
                 }
-                return customerTypes;
             }
             catch (Exception ex)
             {

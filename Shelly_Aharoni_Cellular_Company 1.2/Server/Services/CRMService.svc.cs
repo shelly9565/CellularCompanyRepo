@@ -42,7 +42,11 @@ namespace Server
         }
         public async Task<IEnumerable<CustomerTypeDto>> GetCustomerTypes()
         {
-            return await _CRMProvider.GetCustomerTypes();
+            var task=Task.Factory.StartNew(()=>
+            {
+                return _CRMProvider.GetCustomerTypes();
+            });
+            return await task.ConfigureAwait(false);
         }
         public IEnumerable<LineDto> GetLineForCustomer(int customerId)
         {

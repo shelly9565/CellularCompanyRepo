@@ -1,19 +1,34 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
+using System;
+using System.Windows.Input;
 
 namespace Client.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public MainViewModel()
+        private readonly INavigationService _navigationService;
+
+        public ICommand NavigateToCustomerCommand { get; set; }
+        public ICommand NavigateToLinesCommand { get; set; }
+
+        public MainViewModel(INavigationService navigationService)
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            _navigationService = navigationService;
+            InitializeCommands();
+        }
+
+        private void InitializeCommands()
+        {
+            NavigateToCustomerCommand = new RelayCommand(() =>
+              {
+                  _navigationService.NavigateTo("CustomerPage");
+              });
+            NavigateToLinesCommand = new RelayCommand(() =>
+              {
+                  _navigationService.NavigateTo("LinePage");
+              });
         }
     }
 }

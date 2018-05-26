@@ -27,7 +27,7 @@ namespace BL.Providers.Info
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<CustomerTypeDto>> GetAllCustomerTypes()
+        public IEnumerable<CustomerTypeDto> GetAllCustomerTypes()
         {
             return GetContainer().Resolve<ICustomerTypeRepository>().GetCustomerTypes();
         }

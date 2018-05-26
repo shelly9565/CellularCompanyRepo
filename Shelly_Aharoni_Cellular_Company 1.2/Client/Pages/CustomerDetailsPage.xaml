@@ -5,9 +5,28 @@
     xmlns:local="using:Client.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator},Path=CustomerVM}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock HorizontalAlignment="Left" Height="80" Margin="305,10,0,0" Text="Client Details" FontSize="40" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="766"/>
+        <TextBlock HorizontalAlignment="Left" Height="74" Margin="57,123,0,0" Text="Choose Client" TextWrapping="Wrap" VerticalAlignment="Top" Width="253"/>
+        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding CustomerIds,Mode=TwoWay}" Height="74" Margin="383,123,0,0" VerticalAlignment="Top" Width="269"/>
+        <TextBlock HorizontalAlignment="Left" Height="61" Margin="57,258,0,0" Text="First Name" TextWrapping="Wrap" VerticalAlignment="Top" Width="248"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Customer.FirstName,Mode=TwoWay}" Height="61" Margin="383,258,0,0" VerticalAlignment="Top" Width="269"/>
+        <TextBlock HorizontalAlignment="Left" Height="54" Margin="790,274,0,0" Text="Last Name" TextWrapping="Wrap" VerticalAlignment="Top" Width="236"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Customer.LastName,Mode=TwoWay}" Height="45" Margin="1124,274,0,0" VerticalAlignment="Top" Width="261"/>
+        <TextBlock HorizontalAlignment="Left" Height="57" Margin="23,343,0,0" Text="Id" TextWrapping="Wrap" VerticalAlignment="Top" Width="304"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Customer.CustomerId,Mode=TwoWay}" Height="53" Margin="383,359,0,0" VerticalAlignment="Top" Width="269"/>
+        <TextBlock HorizontalAlignment="Left" Height="73" Margin="790,359,0,0" Text="Address" TextWrapping="Wrap" VerticalAlignment="Top" Width="249"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Customer.Address,Mode=TwoWay}" Height="52" Margin="1124,359,0,0" VerticalAlignment="Top" Width="261"/>
+        <TextBlock HorizontalAlignment="Left" Height="67" Margin="790,451,0,0" Text="Number" TextWrapping="Wrap" VerticalAlignment="Top" Width="253"/>
+        <TextBox HorizontalAlignment="Left" Height="59" Text="{Binding Customer.ContactNumber,Mode=TwoWay}" Margin="1124,467,0,0" VerticalAlignment="Top" Width="268"/>
+        <TextBlock HorizontalAlignment="Left" Height="63" Margin="23,485,0,0" Text="Client Type" TextWrapping="Wrap" VerticalAlignment="Top" Width="327"/>
+        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding CustomerTypes,Mode=TwoWay}" DisplayMemberPath="TypeName" SelectedItem="{Binding Customer.CustomerType}" Height="59" Margin="383,467,0,0" VerticalAlignment="Top" Width="269"/>
+        <Button Content="Add" HorizontalAlignment="Left" Command="{Binding AddOrUpdateCommand}" Height="118" Margin="253,600,0,0" VerticalAlignment="Top" Width="283"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Height="118" Margin="670,600,0,0" VerticalAlignment="Top" Width="308"/>
+        <Button Content="Clear" HorizontalAlignment="Left" Height="118" Margin="1045,600,0,0" VerticalAlignment="Top" Width="346"/>
 
     </Grid>
 </Page>

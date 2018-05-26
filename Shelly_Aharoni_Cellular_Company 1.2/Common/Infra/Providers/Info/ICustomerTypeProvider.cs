@@ -9,7 +9,7 @@ namespace Common.Infra.Providers.Info
 {
     public interface ICustomerTypeProvider
     {
-        Task<IEnumerable<CustomerTypeDto>> GetAllCustomerTypes();
+        IEnumerable<CustomerTypeDto> GetAllCustomerTypes();
         Task<CustomerTypeDto> GetCustomerType(int id);
         Task<CustomerTypeDto> AddCustomerType(CustomerTypeDto customerTypeDto);
         Task<CustomerTypeDto> UpdateCustomerType(int id, CustomerTypeDto customerTypeDto);
