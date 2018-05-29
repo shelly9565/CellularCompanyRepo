@@ -61,9 +61,9 @@ namespace DAL
             c.CustomerTypeId = customer.CustomerTypeId;
             c.FirstName = customer.FirstName;
             c.LastName = customer.LastName;
-            c.CustomerType = customer.CustomerType.ToDto();
-            if (c.Lines != null)
-                c.Lines = customer.Lines.Select(line => line.ToDto()).ToList();
+            //c.CustomerType = customer.CustomerType.ToDto();
+            //if (c.Lines != null)
+            //    c.Lines = customer.Lines.Select(line => line.ToDto()).ToList();
             return c;
 
         }
@@ -77,11 +77,11 @@ namespace DAL
                 Address = customerDto.Address,
                 CallsToCenter = customerDto.CallsToCenter,
                 ContactNumber = customerDto.ContactNumber,
-                CustomerTypeId = customerDto.CustomerTypeId,
+                CustomerTypeId = customerDto.CustomerType.CustomerTypeId,
                 FirstName = customerDto.FirstName,
                 LastName = customerDto.LastName,
-                CustomerType = customerDto.CustomerType.ToModel(),
-                Lines = customerDto.Lines.Select(line => line.ToModel()).ToList()
+                //CustomerType = customerDto.CustomerType.ToModel(),
+                //Lines = customerDto.Lines.Select(line => line.ToModel()).ToList()
             };
         }
 

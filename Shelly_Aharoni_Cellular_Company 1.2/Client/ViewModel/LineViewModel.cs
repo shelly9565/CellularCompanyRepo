@@ -12,9 +12,6 @@ namespace Client.ViewModel
     public class LineViewModel:ViewModelBase
     {
         private readonly INavigationService _navigationService;
-
-        
-
         public LineViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;

@@ -23,9 +23,9 @@
         <TextBlock HorizontalAlignment="Left" Height="67" Margin="790,451,0,0" Text="Number" TextWrapping="Wrap" VerticalAlignment="Top" Width="253"/>
         <TextBox HorizontalAlignment="Left" Height="59" Text="{Binding Customer.ContactNumber,Mode=TwoWay}" Margin="1124,467,0,0" VerticalAlignment="Top" Width="268"/>
         <TextBlock HorizontalAlignment="Left" Height="63" Margin="23,485,0,0" Text="Client Type" TextWrapping="Wrap" VerticalAlignment="Top" Width="327"/>
-        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding CustomerTypes,Mode=TwoWay}" DisplayMemberPath="TypeName" SelectedItem="{Binding Customer.CustomerType}" Height="59" Margin="383,467,0,0" VerticalAlignment="Top" Width="269"/>
+        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding CustomerTypes,Mode=TwoWay}" DisplayMemberPath="TypeName" SelectedItem="{Binding Customer.CustomerType,Mode=TwoWay}" Height="59" Margin="383,467,0,0" VerticalAlignment="Top" Width="269"/>
         <Button Content="Add" HorizontalAlignment="Left" Command="{Binding AddOrUpdateCommand}" Height="118" Margin="253,600,0,0" VerticalAlignment="Top" Width="283"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Height="118" Margin="670,600,0,0" VerticalAlignment="Top" Width="308"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Command="{Binding ClearCommand}" Height="118" Margin="670,600,0,0" VerticalAlignment="Top" Width="308"/>
         <Button Content="Clear" HorizontalAlignment="Left" Height="118" Margin="1045,600,0,0" VerticalAlignment="Top" Width="346"/>
 
     </Grid>

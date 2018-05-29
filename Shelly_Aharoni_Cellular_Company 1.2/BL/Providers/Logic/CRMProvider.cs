@@ -37,7 +37,7 @@ namespace BL.Providers.Logic
         public async Task<CustomerDto> AddCustomer(CustomerDto newCustomer)
         {
             // must choose customer type, in order to add new customer
-            if (newCustomer.CustomerTypeId == 0 || newCustomer == null) return null;
+            if (newCustomer.CustomerType.CustomerTypeId == 0 || newCustomer == null) return null;
             else
             {
                 Task<CustomerDto> customerDto;

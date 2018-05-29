@@ -23,13 +23,14 @@ namespace Client.ViewModel
         public ObservableCollection<CustomerTypeDto> CustomerTypes { get; set; }
 
         public ICommand AddOrUpdateCommand { get; set; }
+        public ICommand ClearCommand { get; set; }
 
         private readonly CRMServiceClient CRMService;
 
         public CustomerViewModel(INavigationService navigationService)
         {
-            CRMService = new CRMServiceClient();
             _navigationService = navigationService;
+            CRMService = new CRMServiceClient();
             Customer = new CustomerDto();
             CustomerTypes = new ObservableCollection<CustomerTypeDto>();
 
@@ -38,10 +39,15 @@ namespace Client.ViewModel
 
             var clientTypes = Task.Factory.StartNew(() => CRMService.GetCustomerTypesAsync());
             CustomerTypes = new ObservableCollection<CustomerTypeDto>(clientTypes.Result.Result);
-            if (CustomerId == 0)
-                AddOrUpdateCommand = new RelayCommand(() => CRMService.AddCustomerAsync(Customer));
-            //else
+            //if (CustomerId == 0)
+            InitializeCommands();
                 //AddOrUpdateCommand=new RelayCommand(()=>CRMService.UpdateCustomerAsync())
+        }
+
+        private void InitializeCommands()
+        {
+            AddOrUpdateCommand = new RelayCommand(() => { CRMService.AddCustomerAsync(Customer); });
+            ClearCommand = new RelayCommand(() => Customer = null);
         }
     }
 }
