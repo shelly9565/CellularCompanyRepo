@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using BL.Providers.Logic;
 using Common.Dtoes;
 using Common.Infra.Providers.BL;
-using Server.ServicesInfra;
+using Server.Infra;
 
 namespace Server
 {
