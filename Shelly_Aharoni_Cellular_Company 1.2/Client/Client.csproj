@@ -135,32 +135,32 @@
     <None Include="Connected Services\CRMServiceReference\Client.CRMServiceReference.PackageDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CRMServiceReference\CRMService.wsdl" />
-    <None Include="Connected Services\CRMServiceReference\CRMService.xsd">
+    <None Include="Connected Services\CRMServiceReference\CRMService1.wsdl" />
+    <None Include="Connected Services\CRMServiceReference\CRMService5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\CRMServiceReference\CRMService1.xsd">
+    <None Include="Connected Services\CRMServiceReference\CRMService51.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\CRMServiceReference\CRMService2.xsd">
+    <None Include="Connected Services\CRMServiceReference\CRMService52.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\CRMServiceReference\CRMService3.xsd">
+    <None Include="Connected Services\CRMServiceReference\CRMService53.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\CRMServiceReference\CRMService4.xsd">
+    <None Include="Connected Services\CRMServiceReference\CRMService54.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CRMServiceReference\CRMService.disco" />
     <None Include="Connected Services\CRMServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\CRMServiceReference\configuration.svcinfo" />
     <None Include="Connected Services\CRMServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\CRMServiceReference\CRMService1.disco" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

@@ -17,6 +17,216 @@ namespace Client.CRMServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerDto", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtoes")]
+    public partial class CustomerDto : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string AddressField;
+        
+        private System.Nullable<int> CallsToCenterField;
+        
+        private string ContactNumberField;
+        
+        private int CustomerIdField;
+        
+        private Client.CRMServiceReference.CustomerTypeDto CustomerTypeField;
+        
+        private int CustomerTypeIdField;
+        
+        private string FirstNameField;
+        
+        private string LastNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CallsToCenter {
+            get {
+                return this.CallsToCenterField;
+            }
+            set {
+                if ((this.CallsToCenterField.Equals(value) != true)) {
+                    this.CallsToCenterField = value;
+                    this.RaisePropertyChanged("CallsToCenter");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContactNumber {
+            get {
+                return this.ContactNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContactNumberField, value) != true)) {
+                    this.ContactNumberField = value;
+                    this.RaisePropertyChanged("ContactNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CustomerId {
+            get {
+                return this.CustomerIdField;
+            }
+            set {
+                if ((this.CustomerIdField.Equals(value) != true)) {
+                    this.CustomerIdField = value;
+                    this.RaisePropertyChanged("CustomerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.CRMServiceReference.CustomerTypeDto CustomerType {
+            get {
+                return this.CustomerTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CustomerTypeField, value) != true)) {
+                    this.CustomerTypeField = value;
+                    this.RaisePropertyChanged("CustomerType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CustomerTypeId {
+            get {
+                return this.CustomerTypeIdField;
+            }
+            set {
+                if ((this.CustomerTypeIdField.Equals(value) != true)) {
+                    this.CustomerTypeIdField = value;
+                    this.RaisePropertyChanged("CustomerTypeId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FirstName {
+            get {
+                return this.FirstNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
+                    this.FirstNameField = value;
+                    this.RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastName {
+            get {
+                return this.LastNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
+                    this.LastNameField = value;
+                    this.RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerTypeDto", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtoes")]
+    public partial class CustomerTypeDto : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int CustomerTypeIdField;
+        
+        private double MinutePriceField;
+        
+        private double SMSPriceField;
+        
+        private string TypeNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CustomerTypeId {
+            get {
+                return this.CustomerTypeIdField;
+            }
+            set {
+                if ((this.CustomerTypeIdField.Equals(value) != true)) {
+                    this.CustomerTypeIdField = value;
+                    this.RaisePropertyChanged("CustomerTypeId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double MinutePrice {
+            get {
+                return this.MinutePriceField;
+            }
+            set {
+                if ((this.MinutePriceField.Equals(value) != true)) {
+                    this.MinutePriceField = value;
+                    this.RaisePropertyChanged("MinutePrice");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SMSPrice {
+            get {
+                return this.SMSPriceField;
+            }
+            set {
+                if ((this.SMSPriceField.Equals(value) != true)) {
+                    this.SMSPriceField = value;
+                    this.RaisePropertyChanged("SMSPrice");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TypeName {
+            get {
+                return this.TypeNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
+                    this.TypeNameField = value;
+                    this.RaisePropertyChanged("TypeName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LineDto", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtoes")]
     public partial class LineDto : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -151,141 +361,6 @@ namespace Client.CRMServiceReference {
                 if ((this.StatusField.Equals(value) != true)) {
                     this.StatusField = value;
                     this.RaisePropertyChanged("Status");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerDto", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtoes")]
-    public partial class CustomerDto : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string AddressField;
-        
-        private System.Nullable<int> CallsToCenterField;
-        
-        private string ContactNumberField;
-        
-        private int CustomerIdField;
-        
-        private Client.CRMServiceReference.CustomerTypeDto CustomerTypeField;
-        
-        private int CustomerTypeIdField;
-        
-        private string FirstNameField;
-        
-        private string LastNameField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> CallsToCenter {
-            get {
-                return this.CallsToCenterField;
-            }
-            set {
-                if ((this.CallsToCenterField.Equals(value) != true)) {
-                    this.CallsToCenterField = value;
-                    this.RaisePropertyChanged("CallsToCenter");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ContactNumber {
-            get {
-                return this.ContactNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContactNumberField, value) != true)) {
-                    this.ContactNumberField = value;
-                    this.RaisePropertyChanged("ContactNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CustomerId {
-            get {
-                return this.CustomerIdField;
-            }
-            set {
-                if ((this.CustomerIdField.Equals(value) != true)) {
-                    this.CustomerIdField = value;
-                    this.RaisePropertyChanged("CustomerId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Client.CRMServiceReference.CustomerTypeDto CustomerType {
-            get {
-                return this.CustomerTypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CustomerTypeField, value) != true)) {
-                    this.CustomerTypeField = value;
-                    this.RaisePropertyChanged("CustomerType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CustomerTypeId {
-            get {
-                return this.CustomerTypeIdField;
-            }
-            set {
-                if ((this.CustomerTypeIdField.Equals(value) != true)) {
-                    this.CustomerTypeIdField = value;
-                    this.RaisePropertyChanged("CustomerTypeId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FirstName {
-            get {
-                return this.FirstNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
-                    this.FirstNameField = value;
-                    this.RaisePropertyChanged("FirstName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LastName {
-            get {
-                return this.LastNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
-                    this.LastNameField = value;
-                    this.RaisePropertyChanged("LastName");
                 }
             }
         }
@@ -529,81 +604,6 @@ namespace Client.CRMServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerTypeDto", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtoes")]
-    public partial class CustomerTypeDto : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private int CustomerTypeIdField;
-        
-        private double MinutePriceField;
-        
-        private double SMSPriceField;
-        
-        private string TypeNameField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CustomerTypeId {
-            get {
-                return this.CustomerTypeIdField;
-            }
-            set {
-                if ((this.CustomerTypeIdField.Equals(value) != true)) {
-                    this.CustomerTypeIdField = value;
-                    this.RaisePropertyChanged("CustomerTypeId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double MinutePrice {
-            get {
-                return this.MinutePriceField;
-            }
-            set {
-                if ((this.MinutePriceField.Equals(value) != true)) {
-                    this.MinutePriceField = value;
-                    this.RaisePropertyChanged("MinutePrice");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double SMSPrice {
-            get {
-                return this.SMSPriceField;
-            }
-            set {
-                if ((this.SMSPriceField.Equals(value) != true)) {
-                    this.SMSPriceField = value;
-                    this.RaisePropertyChanged("SMSPrice");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TypeName {
-            get {
-                return this.TypeNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
-                    this.TypeNameField = value;
-                    this.RaisePropertyChanged("TypeName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SelectedNumberDto", Namespace="http://schemas.datacontract.org/2004/07/Common.Dtoes")]
     public partial class SelectedNumberDto : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -681,11 +681,29 @@ namespace Client.CRMServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CRMServiceReference.ICRMService")]
     public interface ICRMService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/AddCustomer", ReplyAction="http://tempuri.org/ICRMService/AddCustomerResponse")]
+        System.Threading.Tasks.Task<Client.CRMServiceReference.CustomerDto> AddCustomerAsync(Client.CRMServiceReference.CustomerDto customer);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/AddFullLine", ReplyAction="http://tempuri.org/ICRMService/AddFullLineResponse")]
         System.Threading.Tasks.Task<bool> AddFullLineAsync(Client.CRMServiceReference.LineDto line, Client.CRMServiceReference.PackageIncludeDto packageInclude, Client.CRMServiceReference.SelectedNumberDto selectedNumber, Client.CRMServiceReference.CustomerDto customer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/AddCustomer", ReplyAction="http://tempuri.org/ICRMService/AddCustomerResponse")]
-        System.Threading.Tasks.Task<Client.CRMServiceReference.CustomerDto> AddCustomerAsync(Client.CRMServiceReference.CustomerDto customer);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetAllCustomers", ReplyAction="http://tempuri.org/ICRMService/GetAllCustomersResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.CustomerDto>> GetAllCustomersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetCustomersIds", ReplyAction="http://tempuri.org/ICRMService/GetCustomersIdsResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<int>> GetCustomersIdsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetCustomerTypes", ReplyAction="http://tempuri.org/ICRMService/GetCustomerTypesResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.CustomerTypeDto>> GetCustomerTypesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetLineForCustomer", ReplyAction="http://tempuri.org/ICRMService/GetLineForCustomerResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.LineDto>> GetLineForCustomerAsync(int customerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetPackages", ReplyAction="http://tempuri.org/ICRMService/GetPackagesResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.PackageDto>> GetPackagesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetSelectedNumbers", ReplyAction="http://tempuri.org/ICRMService/GetSelectedNumbersResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<string>> GetSelectedNumbersAsync(int lineId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/RemoveCustomer", ReplyAction="http://tempuri.org/ICRMService/RemoveCustomerResponse")]
         System.Threading.Tasks.Task<Client.CRMServiceReference.CustomerDto> RemoveCustomerAsync(int id);
@@ -698,24 +716,6 @@ namespace Client.CRMServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/UpdateLine", ReplyAction="http://tempuri.org/ICRMService/UpdateLineResponse")]
         System.Threading.Tasks.Task<Client.CRMServiceReference.LineDto> UpdateLineAsync(int lineId, Client.CRMServiceReference.LineDto line);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetSelectedNumbers", ReplyAction="http://tempuri.org/ICRMService/GetSelectedNumbersResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<string>> GetSelectedNumbersAsync(int lineId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetAllCustomers", ReplyAction="http://tempuri.org/ICRMService/GetAllCustomersResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.CustomerDto>> GetAllCustomersAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetCustomersIds", ReplyAction="http://tempuri.org/ICRMService/GetCustomersIdsResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<int>> GetCustomersIdsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetCustomerTypes", ReplyAction="http://tempuri.org/ICRMService/GetCustomerTypesResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.CustomerTypeDto>> GetCustomerTypesAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetPackages", ReplyAction="http://tempuri.org/ICRMService/GetPackagesResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.PackageDto>> GetPackagesAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRMService/GetLineForCustomer", ReplyAction="http://tempuri.org/ICRMService/GetLineForCustomerResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.LineDto>> GetLineForCustomerAsync(int customerId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -761,12 +761,36 @@ namespace Client.CRMServiceReference {
                 base(binding, remoteAddress) {
         }
         
+        public System.Threading.Tasks.Task<Client.CRMServiceReference.CustomerDto> AddCustomerAsync(Client.CRMServiceReference.CustomerDto customer) {
+            return base.Channel.AddCustomerAsync(customer);
+        }
+        
         public System.Threading.Tasks.Task<bool> AddFullLineAsync(Client.CRMServiceReference.LineDto line, Client.CRMServiceReference.PackageIncludeDto packageInclude, Client.CRMServiceReference.SelectedNumberDto selectedNumber, Client.CRMServiceReference.CustomerDto customer) {
             return base.Channel.AddFullLineAsync(line, packageInclude, selectedNumber, customer);
         }
         
-        public System.Threading.Tasks.Task<Client.CRMServiceReference.CustomerDto> AddCustomerAsync(Client.CRMServiceReference.CustomerDto customer) {
-            return base.Channel.AddCustomerAsync(customer);
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.CustomerDto>> GetAllCustomersAsync() {
+            return base.Channel.GetAllCustomersAsync();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<int>> GetCustomersIdsAsync() {
+            return base.Channel.GetCustomersIdsAsync();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.CustomerTypeDto>> GetCustomerTypesAsync() {
+            return base.Channel.GetCustomerTypesAsync();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.LineDto>> GetLineForCustomerAsync(int customerId) {
+            return base.Channel.GetLineForCustomerAsync(customerId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.PackageDto>> GetPackagesAsync() {
+            return base.Channel.GetPackagesAsync();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<string>> GetSelectedNumbersAsync(int lineId) {
+            return base.Channel.GetSelectedNumbersAsync(lineId);
         }
         
         public System.Threading.Tasks.Task<Client.CRMServiceReference.CustomerDto> RemoveCustomerAsync(int id) {
@@ -783,30 +807,6 @@ namespace Client.CRMServiceReference {
         
         public System.Threading.Tasks.Task<Client.CRMServiceReference.LineDto> UpdateLineAsync(int lineId, Client.CRMServiceReference.LineDto line) {
             return base.Channel.UpdateLineAsync(lineId, line);
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<string>> GetSelectedNumbersAsync(int lineId) {
-            return base.Channel.GetSelectedNumbersAsync(lineId);
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.CustomerDto>> GetAllCustomersAsync() {
-            return base.Channel.GetAllCustomersAsync();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<int>> GetCustomersIdsAsync() {
-            return base.Channel.GetCustomersIdsAsync();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.CustomerTypeDto>> GetCustomerTypesAsync() {
-            return base.Channel.GetCustomerTypesAsync();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.PackageDto>> GetPackagesAsync() {
-            return base.Channel.GetPackagesAsync();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Client.CRMServiceReference.LineDto>> GetLineForCustomerAsync(int customerId) {
-            return base.Channel.GetLineForCustomerAsync(customerId);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {
@@ -831,7 +831,7 @@ namespace Client.CRMServiceReference {
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ICRMService)) {
-                return new System.ServiceModel.EndpointAddress("http://localhost:57594/Services/CRMService.svc");
+                return new System.ServiceModel.EndpointAddress("http://localhost:57594/services/CRMService.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }

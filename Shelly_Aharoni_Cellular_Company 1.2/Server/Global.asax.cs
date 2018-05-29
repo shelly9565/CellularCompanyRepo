@@ -2,7 +2,7 @@
 using Autofac.Integration.Wcf;
 using BL.Providers.Logic;
 using Common.Infra.Providers.BL;
-using Server.ServicesInfra;
+using Server.Infra;
 using System;
 using System.Collections.Generic;
 using System.Linq;

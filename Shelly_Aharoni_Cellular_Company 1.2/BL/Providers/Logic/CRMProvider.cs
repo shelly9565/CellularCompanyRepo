@@ -36,10 +36,11 @@ namespace BL.Providers.Logic
 
         public async Task<CustomerDto> AddCustomer(CustomerDto newCustomer)
         {
+            if (newCustomer == null) return null;
             // must choose customer type, in order to add new customer
-            if (newCustomer.CustomerType.CustomerTypeId == 0 || newCustomer == null) return null;
             else
             {
+                newCustomer.CustomerTypeId = newCustomer.CustomerType.CustomerTypeId;
                 Task<CustomerDto> customerDto;
                 lock (_obj)
                 {
@@ -184,7 +185,7 @@ namespace BL.Providers.Logic
             return await line;
         }
 
-        public async Task<CustomerDto> UpdateCustomer(int customerId, CustomerDto customer )
+        public async Task<CustomerDto> UpdateCustomer(int customerId, CustomerDto customer)
         {
             Task<CustomerDto> customerDto;
             lock (_obj)
@@ -209,7 +210,7 @@ namespace BL.Providers.Logic
             Task<IEnumerable<string>> list;
             lock (_obj)
             {
-                list= _selectedNumberProvider.GetSelectedNumbersByLine(lineId);
+                list = _selectedNumberProvider.GetSelectedNumbersByLine(lineId);
             }
             return await list;
         }
@@ -217,7 +218,7 @@ namespace BL.Providers.Logic
         public IEnumerable<int> GetCustomersIds()
         {
             List<int> list;
-            lock(_obj)
+            lock (_obj)
             {
                 IEnumerable<CustomerDto> l = _customerProvider.GetAllCustomers().Result;
                 list = l.Select(c => c.CustomerId).ToList();
@@ -228,7 +229,7 @@ namespace BL.Providers.Logic
         public async Task<IEnumerable<PackageDto>> GetPackages()
         {
             Task<IEnumerable<PackageDto>> packages;
-            lock(_obj)
+            lock (_obj)
             {
                 packages = _packageProvider.GetAllPackages();
             }
@@ -238,7 +239,7 @@ namespace BL.Providers.Logic
         public IEnumerable<LineDto> GetLineForCustomer(int customerId)
         {
             IEnumerable<LineDto> lines;
-            lock(_obj)
+            lock (_obj)
             {
                 lines = _lineProvider.GetAllLines().Result.Where(l => l.CustomerId == customerId).ToList();
             }

@@ -41,18 +41,6 @@ namespace DAL
         public static CustomerDto ToDto(this Customer customer)
         {
             if (customer == null) return null;
-            //return new CustomerDto
-            //{
-            //    CustomerId = customer.CustomerId,
-            //    Address = customer.Address,
-            //    CallsToCenter = customer.CallsToCenter,
-            //    ContactNumber = customer.ContactNumber,
-            //    CustomerTypeId = customer.CustomerTypeId,
-            //    FirstName = customer.FirstName,
-            //    LastName = customer.LastName,
-            //    CustomerType = customer.CustomerType.ToDto(),
-            //    Lines = customer.Lines.Select(line => line.ToDto()).ToList()
-            //};
             CustomerDto c = new CustomerDto();
             c.CustomerId = customer.CustomerId;
             c.Address = customer.Address;
@@ -61,9 +49,6 @@ namespace DAL
             c.CustomerTypeId = customer.CustomerTypeId;
             c.FirstName = customer.FirstName;
             c.LastName = customer.LastName;
-            //c.CustomerType = customer.CustomerType.ToDto();
-            //if (c.Lines != null)
-            //    c.Lines = customer.Lines.Select(line => line.ToDto()).ToList();
             return c;
 
         }
@@ -80,8 +65,6 @@ namespace DAL
                 CustomerTypeId = customerDto.CustomerType.CustomerTypeId,
                 FirstName = customerDto.FirstName,
                 LastName = customerDto.LastName,
-                //CustomerType = customerDto.CustomerType.ToModel(),
-                //Lines = customerDto.Lines.Select(line => line.ToModel()).ToList()
             };
         }
 
@@ -125,7 +108,6 @@ namespace DAL
                 Package = line.Package.ToDto(),
                 SMSes = line.SMSes.Select(sms => sms.ToDto()).ToList(),
                 Calls = line.Calls.Select(sms => sms.ToDto()).ToList()
-
             };
         }
 
