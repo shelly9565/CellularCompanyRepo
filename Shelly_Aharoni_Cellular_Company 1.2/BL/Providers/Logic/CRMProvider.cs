@@ -37,7 +37,7 @@ namespace BL.Providers.Logic
         public async Task<CustomerDto> AddCustomer(CustomerDto newCustomer)
         {
             // must choose customer type, in order to add new customer
-            if (newCustomer.CustomerTypeId == 0 || newCustomer == null) return null;
+            if (newCustomer.CustomerType.CustomerTypeId == 0 || newCustomer == null) return null;
             else
             {
                 Task<CustomerDto> customerDto;
@@ -157,16 +157,14 @@ namespace BL.Providers.Logic
             return await custmrTypeToUpdate;
         }
 
-        public async Task<IEnumerable<CustomerTypeDto>> GetCustomerTypes()
+        public IEnumerable<CustomerTypeDto> GetCustomerTypes()
         {
             try
             {
-                IEnumerable<CustomerTypeDto> customerTypes;
                 lock (_obj)
                 {
-                    customerTypes = _customerTypeProvider.GetAllCustomerTypes().Result;
+                    return _customerTypeProvider.GetAllCustomerTypes();
                 }
-                return customerTypes;
             }
             catch (Exception ex)
             {

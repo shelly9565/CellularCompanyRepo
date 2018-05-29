@@ -20,7 +20,7 @@ namespace Common.Infra.Providers.BL
         Task<IEnumerable<string>> GetSelectedNumbers(int lineId);
         Task<IEnumerable<CustomerDto>> GetAllCustomers();
         IEnumerable<int> GetCustomersIds();
-        Task<IEnumerable<CustomerTypeDto>> GetCustomerTypes();
+        IEnumerable<CustomerTypeDto> GetCustomerTypes();
         //IEnumerable<LineDto> GetLines();
         Task<IEnumerable<PackageDto>> GetPackages();
         IEnumerable<LineDto> GetLineForCustomer(int customerId);

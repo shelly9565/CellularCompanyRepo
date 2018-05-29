@@ -13,13 +13,13 @@ namespace DAL.Repositories
 {
     public class CustomerTypeRepository : ICustomerTypeRepository
     {
-        public async Task<IEnumerable<CustomerTypeDto>> GetCustomerTypes()
+        public IEnumerable<CustomerTypeDto> GetCustomerTypes()
         {
             using (CellularCompanyContext db = new CellularCompanyContext())
             {
                 try
                 {
-                    IEnumerable<CustomerType> customerTypes = await db.CustomerTypes.ToListAsync();
+                    IEnumerable<CustomerType> customerTypes = db.CustomerTypes.ToList();
                     return customerTypes.Select(cstmr => cstmr.ToDto()).ToList();
                 }
                 catch (Exception ex)

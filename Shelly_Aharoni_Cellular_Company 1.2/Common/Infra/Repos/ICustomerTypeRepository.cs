@@ -9,7 +9,7 @@ namespace Common.Repos.Infra
 {
     public interface ICustomerTypeRepository
     {
-        Task<IEnumerable<CustomerTypeDto>> GetCustomerTypes();
+        IEnumerable<CustomerTypeDto> GetCustomerTypes();
         Task<CustomerTypeDto> GetCustomerType(int id);
         Task<CustomerTypeDto> CreateCustomerType(CustomerTypeDto customerTypeDto);
         Task<CustomerTypeDto> UpdateCustomerType(int id, CustomerTypeDto customerTypeDto);
