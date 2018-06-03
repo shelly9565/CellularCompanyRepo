@@ -1,4 +1,6 @@
 using Client.Pages;
+using Client.Pages.Customer;
+using Client.Pages.User;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -8,8 +10,10 @@ namespace Client.ViewModel
 {
     public class ViewModelLocator
     {
-        private const string CustomerPageKey = "CustomerPage";
-        private const string LinePageKey = "LinePage";
+        //private const string CustomerPageKey = "CustomerPage";
+        //private const string LinePageKey = "LinePage";
+        private const string LoginUserPageKey = "LoginUserPage";
+        private const string LoginCustomerPageKey = "LoginCustomerPage";
 
         public ViewModelLocator()
         {
@@ -17,8 +21,8 @@ namespace Client.ViewModel
 
             var nav = new NavigationService();
 
-            nav.Configure(CustomerPageKey,typeof(CustomerDetailsPage));
-            nav.Configure(LinePageKey, typeof(LineDetailsPage));
+            nav.Configure(LoginUserPageKey, typeof(LoginUserPage));
+            nav.Configure(LoginCustomerPageKey, typeof(LoginCustomerPage));
 
             SimpleIoc.Default.Register<INavigationService>(() => nav);
 

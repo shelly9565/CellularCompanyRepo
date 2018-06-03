@@ -100,22 +100,43 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="CustomObservableCollection.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CustomerDetailsPage.xaml.cs">
+    <Compile Include="Pages\Shared\CustomerD.xaml.cs">
+      <DependentUpon>CustomerD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shared\CustomerDetailsPage.xaml.cs">
       <DependentUpon>CustomerDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\LineDetailsPage.xaml.cs">
-      <DependentUpon>LineDetailsPage.xaml</DependentUpon>
+    <Compile Include="Pages\Customer\LoginCustomerPage.xaml.cs">
+      <DependentUpon>LoginCustomerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Actions\AddCustomerPage.xaml.cs">
+      <DependentUpon>AddCustomerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Actions\ManageLinePage.xaml.cs">
+      <DependentUpon>ManageLinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Actions\SearchCustomerPage.xaml.cs">
+      <DependentUpon>SearchCustomerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\LoginUserPage.xaml.cs">
+      <DependentUpon>LoginUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\UserActionsPage.xaml.cs">
+      <DependentUpon>UserActionsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicesInit.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\LineViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\OptimalPackageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -123,18 +144,6 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Client_TemporaryKey.pfx" />
-    <None Include="Connected Services\CRMServiceReference\Client.CRMServiceReference.CustomerDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CRMServiceReference\Client.CRMServiceReference.CustomerTypeDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CRMServiceReference\Client.CRMServiceReference.LineDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CRMServiceReference\Client.CRMServiceReference.PackageDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\CRMServiceReference\CRMService1.wsdl" />
     <None Include="Connected Services\CRMServiceReference\CRMService5.xsd">
       <SubType>Designer</SubType>
@@ -151,6 +160,10 @@
     <None Include="Connected Services\CRMServiceReference\CRMService54.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\Common.Dtoes.CustomerDto.datasource" />
+    <None Include="Properties\DataSources\Common.Dtoes.CustomerTypeDto.datasource" />
+    <None Include="Properties\DataSources\Common.Dtoes.LineDto.datasource" />
+    <None Include="Properties\DataSources\Common.Dtoes.PackageDto.datasource" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -179,11 +192,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\CustomerDetailsPage.xaml">
+    <Page Include="Pages\Shared\CustomerD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\LineDetailsPage.xaml">
+    <Page Include="Pages\Shared\CustomerDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Customer\LoginCustomerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\User\Actions\AddCustomerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\User\Actions\ManageLinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\User\Actions\SearchCustomerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\User\LoginUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\User\UserActionsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,6 +243,13 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CRMServiceReference\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{6FA01E9F-BE6F-4D32-AEE0-98E0465DF461}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

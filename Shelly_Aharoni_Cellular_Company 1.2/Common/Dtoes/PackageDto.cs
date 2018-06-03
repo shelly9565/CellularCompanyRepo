@@ -19,6 +19,7 @@ namespace Common.Dtoes
         public double PackageTotalPrice { get; set; }
 
         public virtual IEnumerable<LineDto> Lines { get; set; }
+        public virtual ICollection<PackageIncludeDto> PackageIncludes { get; set; }
 
     }
 }

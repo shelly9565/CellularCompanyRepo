@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="Client.Pages.User.LoginUserPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Client.Pages.User"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock HorizontalAlignment="Left" Margin="500,59,0,0" Text="Welcome User !" TextWrapping="Wrap" VerticalAlignment="Top" Height="78" Width="458" FontSize="48"/>
+        <TextBlock HorizontalAlignment="Left" Margin="166,241,0,0" Text="User Name:" TextWrapping="Wrap" VerticalAlignment="Top" Height="91" Width="288" FontSize="48"/>
+        <TextBlock HorizontalAlignment="Left" Margin="166,358,0,0" Text="Password:" TextWrapping="Wrap" VerticalAlignment="Top" Height="91" Width="322" FontSize="48"/>
+        <TextBox x:Name="usernameTbx" HorizontalAlignment="Left" Margin="578,241,0,0" Text="" VerticalAlignment="Top" Height="64" Width="255"/>
+        <TextBox x:Name="passwordTbx" HorizontalAlignment="Left" Margin="578,359,0,0" Text="" VerticalAlignment="Top" Height="64" Width="255"/>
+        <Button x:Name="loginBtn" Content="Login !" HorizontalAlignment="Left" Margin="500,565,0,0" VerticalAlignment="Top" Height="146" Width="371" FontSize="36"/>
+
+    </Grid>
+</Page>

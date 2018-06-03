@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Common.Infra.Providers.BL
 {
-    public interface IReportEngineProvider
+    public interface IReportsEngineProvider
     {
+        IEnumerable<string> MostValuableClients();
+        IEnumerable<string> MostCallingToCenterClients();
+
     }
 }

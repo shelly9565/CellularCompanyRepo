@@ -23,15 +23,15 @@ namespace Common.Dtoes
         [DataMember]
         public double DiscountPrecentage { get; set; }
         [DataMember]
-        public string MostCalledNumber { get; set; }
+        public bool MostCalledNumber { get; set; }
         [DataMember]
         public bool InsideFamilyCalls { get; set; }
-        [DataMember]
-        public int? FavoriteNumbersId { get; set; }
-        [DataMember]
-        public SelectedNumberDto SelectedNumber { get; set; }
 
-        public LineDto Line { get; set; }
+        [DataMember]
+        public int PackageId { get; set; }
+        [DataMember]
+        public PackageDto Package { get; set; }
+
 
     }
 }

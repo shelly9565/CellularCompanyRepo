@@ -21,11 +21,7 @@ namespace BL.Providers.Info
                     .SingleInstance();
             return builder.Build();
         }
-
-        public Task<CustomerTypeDto> AddCustomerType(CustomerTypeDto customerTypeDto)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public IEnumerable<CustomerTypeDto> GetAllCustomerTypes()
         {
@@ -36,15 +32,6 @@ namespace BL.Providers.Info
         {
             return GetContainer().Resolve<ICustomerTypeRepository>().GetCustomerType(id);
         }
-
-        public Task<CustomerTypeDto> RemoveCustomerType(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<CustomerTypeDto> UpdateCustomerType(int id, CustomerTypeDto customerTypeDto)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

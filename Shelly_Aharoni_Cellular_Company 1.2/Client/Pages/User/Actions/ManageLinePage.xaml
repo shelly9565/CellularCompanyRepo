@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="Client.Pages.User.Actions.ManageLinePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Client.Pages.User.Actions"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock  Height="50" Margin="92,184,0,0" Text="Select Client" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="30" HorizontalAlignment="Left"/>
+        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding Clients, Mode=TwoWay}" SelectedItem="{Binding Client,Mode=TwoWay}" DisplayMemberPath="ClientId" Height="50" Margin="392,184,0,0" VerticalAlignment="Top" Width="300" FontSize="30"/>
+        <TextBlock HorizontalAlignment="Left" TextAlignment="Center" FontSize="50" Height="80" Margin="292,94,0,0" Text="Line Information" TextWrapping="Wrap" VerticalAlignment="Top" Width="1000"/>
+        <TextBlock HorizontalAlignment="Left" Height="50" Margin="92,259,0,0" Text="Select Line" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="30"/>
+        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding Lines,Mode=TwoWay}" SelectedItem="{Binding SelectedLine,Mode=TwoWay}" DisplayMemberPath="Number" Height="50" Margin="392,259,0,0" VerticalAlignment="Top" Width="300" FontSize="30"/>
+        <TextBlock HorizontalAlignment="Left" Height="50" Margin="792,259,0,0" Text="Number" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="30"/>
+        <TextBox HorizontalAlignment="Left" Height="50" Margin="1092,259,0,0" VerticalAlignment="Top" Width="300" FontSize="30" Text="{Binding Line.Number,Mode=TwoWay}"/>
+        <TextBlock HorizontalAlignment="Left" Height="50" Margin="92,334,0,0" Text="Select a Package" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="30"/>
+        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding Packages,Mode=TwoWay}" DisplayMemberPath="PackageName" SelectedValuePath="PackageId" SelectedValue="{Binding Line.PackageId,Mode=TwoWay}" Height="50" Margin="392,334,0,0" VerticalAlignment="Top" Width="300" FontSize="30"/>
+        <TextBlock HorizontalAlignment="Left" Height="50" Margin="792,334,0,0" Text="Package Includes Name" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" FontSize="25"/>
+        <TextBox HorizontalAlignment="Left" Height="50" Margin="1092,334,0,0" VerticalAlignment="Top" Width="300" FontSize="30" Text="{Binding PackageIncludes.IncludeName,Mode=TwoWay}"/>
+        <CheckBox Content="XminYPrice" IsChecked="{Binding XMinYpriceIsChecked,Mode=TwoWay}" HorizontalAlignment="Left" Height="50" Margin="92,409,0,0" VerticalAlignment="Top" Width="250" FontSize="30"/>
+        <TextBlock HorizontalAlignment="Left" Height="50" Margin="392,409,0,0" Text="Minutes" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="30"/>
+        <TextBox HorizontalAlignment="Left" IsEnabled="{Binding PriceMinutesEnabled,Mode=TwoWay}" Text="{Binding PackageIncludes.MaxMinute,Mode=TwoWay}" Height="50" Margin="542,409,0,0"  VerticalAlignment="Top" Width="150" FontSize="30"/>
+        <TextBlock HorizontalAlignment="Left" Height="50" Margin="742,409,0,0" Text="Price" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="30"/>
+        <TextBox HorizontalAlignment="Left" IsEnabled="{Binding PriceMinutesEnabled,Mode=TwoWay}" Height="50" Margin="892,409,0,0" Text="{Binding PackageIncludes.FixedPrice,Mode=TwoWay}" VerticalAlignment="Top" Width="150" FontSize="30"/>
+        <CheckBox Content="Family Discount" IsChecked="{Binding PackageIncludes.InsideFamilyCalls,Mode=TwoWay}" HorizontalAlignment="Left" Height="50" Margin="92,484,0,0" VerticalAlignment="Top" Width="250" FontSize="30"/>
+        <CheckBox Content="Friends" IsChecked="{Binding FriendsIsChecked,Mode=TwoWay}" HorizontalAlignment="Left" Height="50" Margin="92,559,0,0" VerticalAlignment="Top" Width="200" FontSize="30"/>
+        <TextBox HorizontalAlignment="Left" IsEnabled="{Binding FriendsEnabled,Mode=TwoWay}" Text="{Binding SelectedNumbers.FirstNumber,Mode=TwoWay}" Height="50" Margin="392,559,0,0" VerticalAlignment="Top" Width="250" FontSize="30"/>
+        <TextBox HorizontalAlignment="Left" IsEnabled="{Binding FriendsEnabled,Mode=TwoWay}" Text="{Binding SelectedNumbers.SecondNumber,Mode=TwoWay}" Height="50" Margin="692,559,0,0" VerticalAlignment="Top" Width="250" FontSize="30"/>
+        <TextBox HorizontalAlignment="Left" IsEnabled="{Binding FriendsEnabled,Mode=TwoWay}" Text="{Binding SelectedNumbers.ThirdNumber,Mode=TwoWay}" Height="50" Margin="992,559,0,0" VerticalAlignment="Top" Width="250" FontSize="30"/>
+        <CheckBox Content="Favorite Number" IsChecked="{Binding FavoriteNumberIsChecked,Mode=TwoWay}" HorizontalAlignment="Left" Height="50" Margin="92,634,0,0" VerticalAlignment="Top" Width="250" FontSize="30"/>
+        <TextBox HorizontalAlignment="Left" IsEnabled="{Binding FavoriteNumberEnabled,Mode=TwoWay}" Height="50" Margin="392,634,0,0" VerticalAlignment="Top"  Width="300" FontSize="30" Text="{Binding PackageIncludes.MostCalledNumber,Mode=TwoWay}"/>
+        <TextBlock HorizontalAlignment="Left" Height="50" Margin="792,634,0,0" Text="Discount Precentage" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" FontSize="30"/>
+        <TextBox HorizontalAlignment="Left" IsEnabled="{Binding FavoriteNumberEnabled,Mode=TwoWay}" Height="50" Margin="1092,634,0,0" VerticalAlignment="Top" Width="300" FontSize="30" Text="{Binding PackageIncludes.DiscountPrecentage,Mode=TwoWay}"/>
+        <Button Content="Save" Command="{Binding SaveCommand,Mode=TwoWay}" HorizontalAlignment="Left" Height="80" Margin="92,784,0,0" VerticalAlignment="Top" Width="200" FontSize="40"/>
+        <Button Content="Delete" Command="{Binding DeleteCommand,Mode=TwoWay}" HorizontalAlignment="Left" Height="80" Margin="567,784,0,0" VerticalAlignment="Top" Width="200" FontSize="40"/>
+        <Button Content="Clear" Command="{Binding ClearCommand,Mode=TwoWay}" HorizontalAlignment="Left" Height="80" Margin="1042,784,0,0" VerticalAlignment="Top" Width="200" FontSize="40"/>
+        <Button Content="Go Back" Command="{Binding GoBackCommand,Mode=TwoWay}" HorizontalAlignment="Left" Height="80" Margin="1075,100,0,0" VerticalAlignment="Top" Width="200" FontSize="40"/>
+
+    </Grid>
+</Page>

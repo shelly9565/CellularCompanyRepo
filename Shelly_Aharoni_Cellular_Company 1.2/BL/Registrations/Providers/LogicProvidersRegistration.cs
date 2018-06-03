@@ -48,7 +48,7 @@ namespace BL.Registrations.Providers.LogicProvidersRegistration
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ReportEngineProvider>()
-                .As<IReportEngineProvider>()
+                .As<IReportsEngineProvider>()
                 .SingleInstance();
             base.Load(builder);
         }
