@@ -37,7 +37,6 @@ namespace BL.Providers.Logic
         public async Task<CustomerDto> AddCustomer(CustomerDto newCustomer)
         {
             if (newCustomer == null) return null;
-            // must choose customer type, in order to add new customer
             else
             {
                 newCustomer.CustomerTypeId = newCustomer.CustomerType.CustomerTypeId;
@@ -70,9 +69,10 @@ namespace BL.Providers.Logic
             return await customerToUpdate;
         }
 
-        public async Task<LineDto> AddLine(LineDto newLine)
+        public async Task<LineDto> AddLine(LineDto newLine, SelectedNumberDto newSelectedNumber)
         {
             Task<LineDto> lineDto;
+            Task<SelectedNumberDto> selectedNumberDto;
             lock (_obj)
             {
                 lineDto = _lineProvider.AddLine(newLine);

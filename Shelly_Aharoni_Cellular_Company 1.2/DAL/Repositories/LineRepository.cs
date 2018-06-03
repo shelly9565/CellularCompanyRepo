@@ -49,7 +49,7 @@ namespace DAL.Repositories
             }
         }
 
-        public async Task<LineDto> CreateLine(LineDto lineDto)
+        public async Task<LineDto> CreateLine(LineDto lineDto, SelectedNumberDto selectedNumberDto)
         {
             using (CellularCompanyContext db = new CellularCompanyContext())
             {
@@ -58,6 +58,7 @@ namespace DAL.Repositories
                     if (lineDto == null) return null;
                     else
                     {
+                        lineDto.SelectedNumbers = selectedNumberDto;
                         db.Lines.Add(lineDto.ToModel());
                         await db.SaveChangesAsync();
                         return lineDto;
@@ -78,19 +79,22 @@ namespace DAL.Repositories
             {
                 try
                 {
-                    if (id != lineDto.CustomerId) return null;
-                    else
+                    if (lineDto != null && id != 0 && CheckIfLineNumberAlreadyExist(lineDto.Number))
                     {
-                        Line ln = db.Lines.FirstOrDefault(l => l.LineId == id);
-                        if (ln == null) return null;
-                        else
+                        lineDto.LineId = id;
+                        Line entity = lineDto.ToModel();
+                        db.Lines.Attach(entity);
+                        foreach (var propName in db.Entry(entity).CurrentValues.PropertyNames)
                         {
-                            ln = lineDto.ToModel();
-                            db.Entry(ln).State = System.Data.Entity.EntityState.Modified;
-                            await db.SaveChangesAsync();
-                            return ln.ToDto();
+                            if (propName != nameof(entity.LineId))
+                            {
+                                db.Entry(entity).Property(propName).IsModified = true;
+                            }
                         }
+                        await db.SaveChangesAsync();
+                        return entity.ToDto();
                     }
+                    return null;
                 }
                 catch (Exception ex)
                 {
@@ -98,6 +102,14 @@ namespace DAL.Repositories
                     return null;
                 }
 
+            }
+        }
+
+        public bool CheckIfLineNumberAlreadyExist(string number)
+        {
+            using (var db = new CellularCompanyContext())
+            {
+                return db.Lines.All(l => l.Number == number);
             }
         }
 
@@ -125,30 +137,49 @@ namespace DAL.Repositories
             }
         }
 
-        //public async Task<LineDto> AddLineEntity(LineDto line, PackageIncludeDto packageInclude)
-        //{
-        //    using (CellularCompanyContext db = new CellularCompanyContext())
-        //    {
-        //        try
-        //        {
-        //            if (line == null) return null;
-        //            else
-        //            {
-        //                Line lineEntity = line.ToModel();
-        //                db.Lines.Add(lineEntity);
-        //                PackageInclude packageIncludesEntity = packageInclude.ToModel();
-        //                lineEntity.Package.PackageIncludes.Add(packageIncludesEntity);
-        //                await db.SaveChangesAsync();
-        //                return lineEntity.ToDto();
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Debug.WriteLine(ex.Message);
-        //            return null;
-        //        }
-        //    }
-        //}
+        public LineDto GetLineByNumber(string number)
+        {
+            using (var db = new CellularCompanyContext())
+            {
+                try
+                {
+                    return  db.Lines.Where(l => l.Number == number).FirstOrDefault().ToDto();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
 
+        public IEnumerable<string> GetLineSelectedNumbers(int lineId)
+        {
+            using (CellularCompanyContext db = new CellularCompanyContext())
+            {
+                try
+                {
+                    List<string> list = new List<string>();
+                    SelectedNumbers entity = db.SelectedNumbers.Where(s => s.Line.LineId == lineId).FirstOrDefault();
+                    foreach (var propName in db.Entry(entity).CurrentValues.PropertyNames)
+                    {
+                        if (propName.EndsWith("Number"))
+                        {
+                            if (db.Entry(entity).Property(propName).CurrentValue != null)
+                                list.Add(db.Entry(entity).Property(propName).CurrentValue.ToString());
+                        }
+                    }
+
+                    return list;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
+        
     }
+
 }

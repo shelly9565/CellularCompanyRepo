@@ -46,5 +46,12 @@ namespace BL.Providers.Info
         {
             return await GetContainer().Resolve<ILineRepository>().UpdateLine(id, lineDto);
         }
+
+        public async Task<IEnumerable<LineDto>> GetDestinationLines(int lineId)
+        {
+            IEnumerable<LineDto> lines = GetContainer().Resolve<ILineRepository>().GetLines().Result;
+            return lines.Where(l => l.LineId != lineId);
+        }
     }
 }
+
