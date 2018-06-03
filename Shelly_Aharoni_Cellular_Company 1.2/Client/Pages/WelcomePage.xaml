@@ -9,8 +9,8 @@
     DataContext="{Binding Source={StaticResource Locator},Path=MainVM}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="CustomerMenuBtn" Command="{Binding NavigateToCustomerCommand}" Content="Customer Menu !" HorizontalAlignment="Left" Margin="332,153,0,0" VerticalAlignment="Top" Height="61" Width="248" FontSize="25"/>
-        <Button x:Name="LineMenuBtn" Command="{Binding NavigateToLinesCommand}" Content="Line Menu !" HorizontalAlignment="Left" Margin="332,355,0,0" VerticalAlignment="Top" Height="61" Width="248" FontSize="25"/>
+        <Button x:Name="CustomerBtn" Command="{Binding NavigateToCustomerCommand}" Content="Enter As Customer" HorizontalAlignment="Left" Margin="332,153,0,0" VerticalAlignment="Top" Height="61" Width="286" FontSize="25"/>
+        <Button x:Name="UserBtn" Command="{Binding NavigateToLinesCommand}" Content="Enter As User" HorizontalAlignment="Left" Margin="680,153,0,0" VerticalAlignment="Top" Height="61" Width="292" FontSize="25"/>
 
     </Grid>
 </Page>

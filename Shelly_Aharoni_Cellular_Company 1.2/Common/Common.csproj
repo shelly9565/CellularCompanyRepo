@@ -38,6 +38,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunicationModel.cs" />
     <Compile Include="Dtoes\CallDto.cs" />
     <Compile Include="Dtoes\CustomerDto.cs" />
     <Compile Include="Dtoes\CustomerTypeDto.cs" />
@@ -50,7 +51,7 @@
     <Compile Include="Infra\Providers\BL\ICRMProvider.cs" />
     <Compile Include="Infra\Providers\BL\IInvoiceProvider.cs" />
     <Compile Include="Infra\Providers\BL\IOptimalPackageProvider.cs" />
-    <Compile Include="Infra\Providers\BL\IReportEngineProvider.cs" />
+    <Compile Include="Infra\Providers\BL\IReportsEngineProvider.cs" />
     <Compile Include="Infra\Providers\Info\IPackageProvider.cs" />
     <Compile Include="Infra\Providers\Info\IPaymentProvider.cs" />
     <Compile Include="Infra\Providers\Info\ISelectedNumberProvider.cs" />

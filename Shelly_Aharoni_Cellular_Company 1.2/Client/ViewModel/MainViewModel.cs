@@ -12,6 +12,8 @@ namespace Client.ViewModel
 
         public ICommand NavigateToCustomerCommand { get; set; }
         public ICommand NavigateToLinesCommand { get; set; }
+        public ICommand NavigateToUserMenuCommand { get; set; }
+        public ICommand NavigateToUCustomerMenuCommand { get; set; }
 
         public MainViewModel(INavigationService navigationService)
         {
@@ -22,13 +24,21 @@ namespace Client.ViewModel
         private void InitializeCommands()
         {
             NavigateToCustomerCommand = new RelayCommand(() =>
-              {
-                  _navigationService.NavigateTo("CustomerPage");
-              });
+            {
+                _navigationService.NavigateTo("CustomerPage");
+            });
             NavigateToLinesCommand = new RelayCommand(() =>
-              {
-                  _navigationService.NavigateTo("LinePage");
-              });
+            {
+                _navigationService.NavigateTo("LinePage");
+            });
+            NavigateToUserMenuCommand = new RelayCommand(() =>
+            {
+                _navigationService.NavigateTo("LoginUserPageKey");
+            });
+            NavigateToUCustomerMenuCommand = new RelayCommand(() =>
+            {
+                _navigationService.NavigateTo("LoginCustomerPageKey");
+            });
         }
     }
 }

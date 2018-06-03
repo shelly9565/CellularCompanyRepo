@@ -1,4 +1,5 @@
 ﻿using Client.CRMServiceReference;
+using Common.Dtoes;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -12,7 +13,7 @@ using System.Windows.Input;
 
 namespace Client.ViewModel
 {
-   public class CustomerViewModel:ViewModelBase
+    public class CustomerViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
 
@@ -26,24 +27,26 @@ namespace Client.ViewModel
         public ICommand ClearCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
 
-        private readonly CRMServiceClient CRMService;
 
         public CustomerViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            CRMService = new CRMServiceClient();
             Customer = new CustomerDto();
             CustomerTypes = new ObservableCollection<CustomerTypeDto>();
 
-            var clientTypes = Task.Factory.StartNew(() => CRMService.GetCustomerTypesAsync());
+            var clientTypes = Task.Factory.StartNew(() => ServicesInit.CRMService.GetCustomerTypesAsync());
             CustomerTypes = new ObservableCollection<CustomerTypeDto>(clientTypes.Result.Result);
             InitializeCommands();
         }
 
         private void InitializeCommands()
         {
-            AddOrUpdateCommand = new RelayCommand(() => { CRMService.AddCustomerAsync(Customer); });
-            UpdateCommand = new RelayCommand(() => { CRMService.UpdateCustomerAsync(Customer); });
+            AddOrUpdateCommand = new RelayCommand(() =>
+            {
+                ServicesInit.CRMService.AddCustomerAsync(Customer);
+                _navigationService.NavigateTo("LinePage");
+            });
+            UpdateCommand = new RelayCommand(() => { ServicesInit.CRMService.UpdateCustomerAsync(Customer); });
             ClearCommand = new RelayCommand(() => Customer = null);
         }
     }

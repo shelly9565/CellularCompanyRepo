@@ -10,13 +10,13 @@ namespace DAL.Models
 {
     public class SelectedNumbers
     {
-        [Key, ForeignKey(nameof(PackageIncludes))]
+        [Key, ForeignKey(nameof(Line))]
         public int SelectedNumberId { get; set; }
         public string FirstNumber { get; set; }
         public string SecondNumber { get; set; }
         public string ThirdNumber { get; set; }
 
-        public virtual PackageInclude PackageIncludes { get; set; }
+        public virtual Line Line { get; set; }
 
     }
 }

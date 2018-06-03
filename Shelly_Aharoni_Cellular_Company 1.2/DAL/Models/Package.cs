@@ -12,6 +12,7 @@ namespace DAL.Models
         public Package()
         {
             Lines = new HashSet<Line>();
+            PackageIncludes = new HashSet<PackageInclude>();
         }
 
         [Key]
@@ -20,6 +21,7 @@ namespace DAL.Models
         public double PackageTotalPrice { get; set; }
 
         public virtual ICollection<Line> Lines { get; set; }
+        public virtual ICollection<PackageInclude> PackageIncludes { get; set; }
 
     }
 }

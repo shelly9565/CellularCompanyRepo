@@ -30,7 +30,7 @@ namespace DAL.Repositories
                 try
                 {
                     IEnumerable<string> selectedNumbers = new List<string>();
-                    SelectedNumbers selectedNum = db.SelectedNumbers.FirstOrDefault(s => s.PackageIncludes.Line.LineId == lineId);
+                    SelectedNumbers selectedNum = db.SelectedNumbers.FirstOrDefault(s => s.Line.LineId == lineId);
                     var prop=db.Entry(selectedNum).CurrentValues.PropertyNames.Where(p => p.EndsWith("Number"));
                     return prop;
                 }
