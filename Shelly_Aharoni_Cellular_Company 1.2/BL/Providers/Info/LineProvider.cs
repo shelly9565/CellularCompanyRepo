@@ -22,9 +22,9 @@ namespace BL.Providers.Info
             return builder.Build();
         }
 
-        public async Task<LineDto> AddLine(LineDto lineDto)
+        public async Task<LineDto> AddLine(LineDto lineDto, SelectedNumberDto selectedNumberDto)
         {
-            return await GetContainer().Resolve<ILineRepository>().CreateLine(lineDto);
+            return await GetContainer().Resolve<ILineRepository>().CreateLine(lineDto, selectedNumberDto);
         }
 
         public async Task<IEnumerable<LineDto>> GetAllLines()
