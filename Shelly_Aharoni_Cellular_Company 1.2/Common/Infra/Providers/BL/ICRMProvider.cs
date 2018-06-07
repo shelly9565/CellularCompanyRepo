@@ -9,7 +9,6 @@ namespace Common.Infra.Providers.BL
 {
     public interface ICRMProvider
     {
-        Task<bool> AddFullLine(LineDto line, PackageIncludeDto packageInclude, SelectedNumberDto selectedNumber, CustomerDto customer);
         Task<CustomerDto> AddCustomer(CustomerDto customer);
 
         Task<CustomerDto> RemoveCustomer(int id);
@@ -21,8 +20,10 @@ namespace Common.Infra.Providers.BL
         Task<IEnumerable<CustomerDto>> GetAllCustomers();
         IEnumerable<int> GetCustomersIds();
         IEnumerable<CustomerTypeDto> GetCustomerTypes();
-        //IEnumerable<LineDto> GetLines();
         Task<IEnumerable<PackageDto>> GetPackages();
-        IEnumerable<LineDto> GetLineForCustomer(int customerId);
+        IEnumerable<LineDto> GetLinesForCustomer(int customerId);
+        IEnumerable<SMSDto> GetSmsesForCustomer(int customerId);
+        IEnumerable<PackageDto> GetPackageForCustomer(int customerId);
+        IEnumerable<CallDto> GetCallsForCustomer(int customerId);
     }
 }

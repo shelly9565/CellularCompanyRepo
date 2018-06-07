@@ -11,7 +11,7 @@ namespace Common.Infra.Providers.Info
     {
         Task<IEnumerable<LineDto>> GetAllLines();
         Task<LineDto> GetLine(int id);
-        Task<LineDto> AddLine(LineDto lineDto);
+        Task<LineDto> AddLine(LineDto lineDto, SelectedNumberDto selectedNumberDto);
         Task<LineDto> UpdateLine(int id, LineDto lineDto);
         Task<LineDto> RemoveLine(int id);
     }

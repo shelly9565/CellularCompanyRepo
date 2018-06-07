@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BL.Providers.Logic
 {
-    public class ReportEngineProvider: IReportsEngineProvider
+    public class ReportEngineProvider : IReportsEngineProvider
     {
         private readonly ICustomerTypeProvider _clientTypeManager;
         private readonly ISmsProvider _smsProvider;
@@ -36,34 +36,34 @@ namespace BL.Providers.Logic
             return ModulesRegistrations.RegisterReportsEngine();
         }
 
-        public IEnumerable<LineDto> GetClientMostCalledNumbers(int customerId)
-        {
-            Dictionary<string, int> dictionary = new Dictionary<string, int>();
-            List<string> mostConnectedNumbers = _smsProvider.GetAllSMSes(customerId).Select(s => s.DestinationNumber).ToList();
-            mostConnectedNumbers.AddRange(_callProvider.GetCallsDtos(customerId).Select(s => s.DestinationNumber).ToList());
-            foreach (var i in mostConnectedNumbers)
-            {
-                if (!dictionary.Keys.Contains(i))
-                    dictionary.Add(i, 1);
-                else
-                    dictionary[i]++;
-            }
-            List<string> list = dictionary.Keys.Take(3).ToList();
-            List<LineDto> lines = new List<LineDto>();
-            foreach (var i in list)
-            {
-                if (_lineProvider.GetLineByNumber(i) != null)
-                {
-                    LineDto line = _lineProvider.GetLineByNumber(i);
-                    lines.Add(line);
-                }
-            }
-            return lines;
-        }
+        //public IEnumerable<LineDto> GetClientMostCalledNumbers(int customerId)
+        //{
+        //    Dictionary<string, int> dictionary = new Dictionary<string, int>();
+        //    List<string> mostConnectedNumbers = _crmProvider.GetLineForCustomer(customerId).Select(s => s.DestinationNumber).ToList();
+        //    mostConnectedNumbers.AddRange(_crmProvider.GetCallsForCustomer(customerId).Select(s => s.DestinationNumber).ToList());
+        //    foreach (var i in mostConnectedNumbers)
+        //    {
+        //        if (!dictionary.Keys.Contains(i))
+        //            dictionary.Add(i, 1);
+        //        else
+        //            dictionary[i]++;
+        //    }
+        //    List<string> list = dictionary.Keys.Take(3).ToList();
+        //    List<LineDto> lines = new List<LineDto>();
+        //    foreach (var i in list)
+        //    {
+        //        if (_lineProvider.GetLineByNumber(i) != null)
+        //        {
+        //            LineDto line = _lineProvider.GetLineByNumber(i);
+        //            lines.Add(line);
+        //        }
+        //    }
+        //    return lines;
+        //}
 
         public IEnumerable<string> MostCallingToCenterClients()
         {
-            List<ClientDto> list = _customerProvider.GetClientDtos().ToList();
+            List<CustomerDto> list = _customerProvider.GetAllCustomers().Result.ToList();
             var clients = (from c in list
                            orderby c.CallsToCenter descending
                            select ($"{c.FirstName} {c.LastName} called to center {c.CallsToCenter} times")).Take(3);
@@ -75,7 +75,7 @@ namespace BL.Providers.Logic
             Dictionary<CustomerDto, double> dictionary = new Dictionary<CustomerDto, double>();
             foreach (var item in _customerProvider.GetAllCustomers().Result)
             {
-                CustomerTypeDto customerTypeDto = _clientTypeManager.GetAllCustomerTypes(item.CustomerId);
+                CustomerTypeDto customerTypeDto = _customerProvider.GetCustomer(item.CustomerId).Result.CustomerType;
                 double value = GetCallsPrice(item, customerTypeDto) + GetPackageIncludesPrice(item) + GetPackagePrice(item) + GetSmsPrice(item, customerTypeDto);
                 dictionary.Add(item, value);
             }
@@ -92,13 +92,13 @@ namespace BL.Providers.Logic
 
         public double GetPackagePrice(CustomerDto item)
         {
-            List<int> packageIds = _customerProvider.GetLines(item.CustomerId).Select(p => p.PackageId).ToList();
+            List<int> packageIds = _crmProvider.GetLinesForCustomer(item.CustomerId).Select(p => p.PackageId).ToList();
             double totalLinesPackagesPrice = 0;
             if (packageIds != null)
             {
-                foreach (var i in packageIds)
+                foreach (var id in packageIds)
                 {
-                    totalLinesPackagesPrice += _packageProvider.GetPackage(i).PackageTotalPrice;
+                    totalLinesPackagesPrice += _packageProvider.GetPackage(id).Result.PackageTotalPrice;
                 }
             }
             return totalLinesPackagesPrice;
@@ -106,24 +106,28 @@ namespace BL.Providers.Logic
 
         public double GetPackageIncludesPrice(CustomerDto customer)
         {
-            List<int> packageIncludesIds = _customerProvider.GetLines(customer.CustomerId).Select(p => p.PackageIncludeId).ToList();
             double totalPackageIncludesPrice = 0;
-            if (packageIncludesIds != null)
+            List<PackageDto> packages = _crmProvider.GetPackageForCustomer(customer.CustomerId).ToList();
+            if (packages != null)
             {
-                foreach (var it in packageIncludesIds)
+                List<PackageIncludeDto> packagesIncludes = packages.Select(p => p.PackageIncludes).ToList();
+                foreach (var p in packages)
                 {
-                    PackageIncludeDto packageInclude = _lineProvider.GetPackageIncludes(it);
-                    if (packageInclude != null)
-                        totalPackageIncludesPrice += (packageInclude.FixedPrice * packageInclude.DiscountPrecentage);
+                    foreach (var pi in p.PackageIncludes)
+                    {
+                        totalPackageIncludesPrice += (pi.FixedPrice * pi.DiscountPrecentage);
+                    }
                 }
             }
             return totalPackageIncludesPrice;
-        }
 
-        public double GetSmsPrice(CustomerDto customer, CustomerTypeDto customerTypeDto)
+        }
+        
+
+    public double GetSmsPrice(CustomerDto customer, CustomerTypeDto customerTypeDto)
         {
             double smsPrice = customerTypeDto.SMSPrice;
-            List<SMSDto> smsDto = _smsProvider.GetSMSDtos(customer.CustomerId).Where(s => s.Time.Month == DateTime.Now.Month).ToList();
+            List<SMSDto> smsDto = _crmProvider.GetSmsesForCustomer(customer.CustomerId).Where(s => s.SmsSendTime.Month == DateTime.Now.Month).ToList();
             if (smsDto != null)
                 return smsDto.Count * smsPrice;
             return 0;
@@ -132,7 +136,7 @@ namespace BL.Providers.Logic
         public double GetCallsPrice(CustomerDto customer, CustomerTypeDto customerTypeDto)
         {
             double callPrice = customerTypeDto.MinutePrice;
-            List<CallDto> callDto = _callProvider.GetAllCalls(customer.CustomerId).Where(c => c.Time.Month == DateTime.Now.Month).ToList();
+            List<CallDto> callDto = _crmProvider.GetCallsForCustomer(customer.CustomerId).Where(c => c.callSendDate.Month == DateTime.Now.Month).ToList();
             if (callDto != null)
                 return callDto.Count * callPrice;
             return 0;

@@ -63,11 +63,11 @@ namespace BL.Providers.Info
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<int>> GetCustomerIds()
-        {
-            IEnumerable<CustomerDto> cstmrs =  await GetContainer().Resolve<ICustomerRepository>().GetCustomers();
-            return cstmrs.Select(c => c.CustomerId).ToList();
-        }
+        //public async Task<IEnumerable<int>> GetCustomerIds()
+        //{
+        //    IEnumerable<CustomerDto> cstmrs =  await GetContainer().Resolve<ICustomerRepository>().GetCustomers();
+        //    return cstmrs.Select(c => c.CustomerId).ToList();
+        //}
 
     }
 

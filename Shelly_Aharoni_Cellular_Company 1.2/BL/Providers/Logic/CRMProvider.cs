@@ -22,6 +22,8 @@ namespace BL.Providers.Logic
         private readonly ILineProvider _lineProvider;
         private readonly IPackageIncludeProvider _packageIncludeProvider;
         private readonly ISelectedNumberProvider _selectedNumberProvider;
+        private readonly ISmsProvider _smsProvider;
+        private readonly ICallProvider _callProvider;
 
         public CRMProvider()
         {
@@ -32,6 +34,9 @@ namespace BL.Providers.Logic
             _lineProvider = ModulesRegistrations.RegisterCRMModule().Resolve<ILineProvider>();
             _packageIncludeProvider = ModulesRegistrations.RegisterCRMModule().Resolve<IPackageIncludeProvider>();
             _selectedNumberProvider = ModulesRegistrations.RegisterCRMModule().Resolve<ISelectedNumberProvider>();
+            _smsProvider = ModulesRegistrations.RegisterCRMModule().Resolve<ISmsProvider>();
+            _callProvider = ModulesRegistrations.RegisterCRMModule().Resolve<ICallProvider>();
+            
         }
 
         public async Task<CustomerDto> AddCustomer(CustomerDto newCustomer)
@@ -72,48 +77,11 @@ namespace BL.Providers.Logic
         public async Task<LineDto> AddLine(LineDto newLine, SelectedNumberDto newSelectedNumber)
         {
             Task<LineDto> lineDto;
-            Task<SelectedNumberDto> selectedNumberDto;
             lock (_obj)
             {
-                lineDto = _lineProvider.AddLine(newLine);
+                lineDto = _lineProvider.AddLine(newLine, newSelectedNumber);
             }
             return await lineDto;
-        }
-
-        public async Task<PackageDto> AddPackage(PackageDto newPackage)
-        {
-            Task<PackageDto> packageDto;
-            lock (_obj)
-            {
-                packageDto = _packageProvider.AddPackage(newPackage);
-            }
-            return await packageDto;
-        }
-
-        public async Task<bool> AddSubscription(CustomerDto customer, LineDto line, PackageDto package)
-        {
-            Task<LineDto> lineDto = AddLine(line);
-            Task<CustomerDto> customerDto = AddCustomer(customer);
-            Task<PackageDto> packageDto = AddPackage(package);
-            if (lineDto == null || packageDto == null || customerDto == null) return false;
-            else return true;
-        }
-
-        public async Task<bool> AddFullLine(LineDto line, PackageIncludeDto packageInclude, SelectedNumberDto selectedNumber, CustomerDto customer)
-        {
-            lock (_obj)
-            {
-                LineDto newLine = _lineProvider.AddLine(line).Result;
-                PackageIncludeDto newPackageInclude = _packageIncludeProvider.AddPackageInclude(packageInclude).Result;
-                CustomerDto newCustomer = _customerProvider.AddCustomer(customer).Result;
-                SelectedNumberDto newSelectedNumber = _selectedNumberProvider.AddSelectedNumber(selectedNumber).Result;
-                newPackageInclude.Line = newLine;
-                line.Customer = newCustomer;
-                line.CustomerId = newCustomer.CustomerId;
-                packageInclude.SelectedNumber = newSelectedNumber;
-                line.PackageInclude = newPackageInclude;
-                return true;
-            }
         }
 
         public async Task<PackageDto> UpdatePackage(int clientId, int lineId, PackageDto package)
@@ -144,17 +112,6 @@ namespace BL.Providers.Logic
                 customer = _customerProvider.GetCustomer(id);
             }
             return await customer;
-        }
-
-        public async Task<CustomerTypeDto> UpdateCustomerType(int typeId, CustomerDto customer)
-        {
-            Task<CustomerTypeDto> custmrTypeToUpdate;
-            lock (_obj)
-            {
-                custmrTypeToUpdate = _customerTypeProvider.UpdateCustomerType(customer.CustomerTypeId, customer.CustomerType);
-
-            }
-            return await custmrTypeToUpdate;
         }
 
         public IEnumerable<CustomerTypeDto> GetCustomerTypes()
@@ -234,7 +191,7 @@ namespace BL.Providers.Logic
             return await packages;
         }
 
-        public IEnumerable<LineDto> GetLineForCustomer(int customerId)
+        public IEnumerable<LineDto> GetLinesForCustomer(int customerId)
         {
             IEnumerable<LineDto> lines;
             lock (_obj)
@@ -242,6 +199,50 @@ namespace BL.Providers.Logic
                 lines = _lineProvider.GetAllLines().Result.Where(l => l.CustomerId == customerId).ToList();
             }
             return lines;
+        }
+
+        public IEnumerable<CallDto> GetCallsForCustomer(int customerId)
+        {
+            lock (_obj)
+            {
+                IEnumerable<LineDto> linesForCustomer = _lineProvider.GetAllLines().Result.Where(l => l.CustomerId == customerId).ToList();
+                List<CallDto> calls = new List<CallDto>();
+                foreach (var line in linesForCustomer)
+                {
+                    var callsForLine = _callProvider.GetAllCalls().Result.Where(s => s.LineId == line.LineId).ToList();
+                    calls.AddRange(callsForLine);
+                }
+            return calls;
+            }
+        }
+
+        public IEnumerable<SMSDto> GetSmsesForCustomer(int customerId)
+        {
+            lock (_obj)
+            {
+                IEnumerable<LineDto> linesForCustomer = _lineProvider.GetAllLines().Result.Where(l => l.CustomerId == customerId).ToList();
+                List<SMSDto> smses = new List<SMSDto>();
+                foreach (var line in linesForCustomer)
+                {
+                    var smsesForLine = _smsProvider.GetAllSMSes().Result.Where(s => s.LineId == line.LineId).ToList();
+                    smses.AddRange(smsesForLine);
+                }
+                return smses;
+            }
+        }
+
+        public IEnumerable<PackageDto> GetPackageForCustomer(int customerId)
+        {
+            lock (_obj)
+            {
+                IEnumerable<LineDto> linesForCustomer = _lineProvider.GetAllLines().Result.Where(l => l.CustomerId == customerId).ToList();
+                List<PackageDto> packages = new List<PackageDto>();
+                foreach (var line in linesForCustomer)
+                {
+                    packages.Add(line.Package);
+                }
+                return packages;
+            }
         }
     }
 }
